@@ -47,6 +47,21 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
+
+    # third-party
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'cloudinary',
+    'cloudinary_storage',
+
+    # local apps
+    'products',
+    'accounts',
+    'checkout',
+    'marketing',
 ]
 
 ROOT_URLCONF = 'local_candle_co.urls'
