@@ -1,3 +1,4 @@
-from django.shortcuts import render
+from django.http import HttpResponse
 
-# Create your views here.
+def wishlist_add(request, product_id):
+    return HttpResponse(f"Wishlist placeholder – would add product {product_id} for user {request.user}.")
