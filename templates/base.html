@@ -17,6 +17,12 @@
     <nav class="navbar navbar-light bg-light">
       <div class="container">
         <a class="navbar-brand" href="/">Local Candle Co</a>
+
+        <div class="ms-auto me-3">
+          <a class="me-3" href="{% url 'marketing:faq' %}">FAQ</a>
+          <a class="me-3" href="{% url 'marketing:contact' %}">Contact</a>
+        </div>
+
         <div class="ms-auto">
           {% if user.is_authenticated %}
           <a class="btn btn-outline-secondary me-2" href="/wl/">Wishlist</a>
@@ -31,6 +37,7 @@
         </div>
       </div>
     </nav>
+
     <main class="container py-4">
       {% for message in messages %}
       <div class="alert alert-info">{{ message }}</div>

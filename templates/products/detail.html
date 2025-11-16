@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block page_title %}{{ product.name }}{% endblock %}
+{% block meta_description %}Shop {{ product.name }} – {{ product.description|truncatechars:150 }}{% endblock %}
 
 {% block content %}
   <div class="row mb-4">

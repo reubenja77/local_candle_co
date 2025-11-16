@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
+
 
 class Product(models.Model):
     name = models.CharField(max_length=120)
@@ -9,8 +11,16 @@ class Product(models.Model):
     image_url = models.URLField(blank=True)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    class Meta: ordering = ['name']
-    def __str__(self): return self.name
+
+    class Meta:
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('products:detail', args=[self.slug])
+
 
 class Review(models.Model):
     product = models.ForeignKey(Product, related_name='reviews', on_delete=models.CASCADE)
@@ -19,8 +29,10 @@ class Review(models.Model):
     comment = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
     class Meta:
-        unique_together = ('product', 'author')  # one review per user per product
+        unique_together = ('product', 'author')
         ordering = ['-created_at']
+
     def __str__(self):
         return f"{self.product.name} — {self.author.username} ({self.rating})"

@@ -17,6 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
+from django.contrib.sitemaps.views import sitemap
+from products.sitemaps import ProductSitemap
+
+
+sitemaps = {
+    'products': ProductSitemap,
+}
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,6 +34,9 @@ urlpatterns = [
     path('marketing/', include('marketing.urls')),
     path('wl/', include('accounts.urls')),
     path('robots.txt', TemplateView.as_view(template_name='robots.txt', content_type='text/plain')),
+
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='sitemap'),
 ]
+
 handler404 = 'products.views.custom_404'
 handler500 = 'products.views.custom_500'
