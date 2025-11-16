@@ -1,49 +1,53 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from decimal import Decimal
 
-def checkout_view(request):
-    return HttpResponse("Checkout page placeholder for Local Candle Co.")
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
 
-def cart_add(request, product_id):
-    """Add a product to the cart (stored in session)."""
-    product = get_object_or_404(Product, id=product_id)
+from products.models import Product
 
-    # Get current cart from session or start with empty
-    cart = request.session.get('cart', {})
-
-    # Use string keys because session data is JSON-serializable
-    product_key = str(product_id)
-    cart[product_key] = cart.get(product_key, 0) + 1
-
-    # Save back to session
-    request.session['cart'] = cart
-
-    # For now, redirect to a simple cart detail page
-    return redirect('checkout:cart_detail')
+CART_SESSION_KEY = 'cart'
 
 
-def cart_detail(request):
-    """Show what's currently in the cart."""
-    cart = request.session.get('cart', {})
+def _get_cart(request):
+    """
+    Return the cart dictionary from the session.
+    Keys are product IDs (as strings), values are quantities.
+    """
+    return request.session.setdefault(CART_SESSION_KEY, {})
 
-    product_ids = cart.keys()
-    products = Product.objects.filter(id__in=product_ids)
 
+def cart_view(request):
+    cart = _get_cart(request)
     items = []
-    total = 0
+    total = Decimal('0.00')
 
-    for product in products:
-        qty = cart.get(str(product.id), 0)
-        subtotal = product.price * qty
-        total += subtotal
+    for pid, qty in cart.items():
+        product = get_object_or_404(Product, id=int(pid), is_active=True)
+        line_total = Decimal(qty) * product.price
         items.append({
             'product': product,
-            'quantity': qty,
-            'subtotal': subtotal,
+            'qty': qty,
+            'line_total': line_total,
         })
+        total += line_total
 
-    context = {
-        'items': items,
-        'total': total,
-    }
-    return render(request, 'checkout/cart.html', context)
+    return render(request, 'checkout/cart.html', {'items': items, 'total': total})
+
+
+def cart_add(request, product_id):
+    cart = _get_cart(request)
+    cart[str(product_id)] = cart.get(str(product_id), 0) + 1
+    request.session.modified = True
+
+    product = get_object_or_404(Product, id=product_id)
+    messages.success(request, 'Added to cart.')
+    return redirect('products:detail', slug=product.slug)
+
+
+def cart_remove(request, product_id):
+    cart = _get_cart(request)
+    cart.pop(str(product_id), None)
+    request.session.modified = True
+
+    messages.info(request, 'Removed from cart.')
+    return redirect('checkout:cart')
