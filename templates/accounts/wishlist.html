@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block page_title %}My Wishlist{% endblock %}
+
+{% block content %}
+  <h1 class="mb-4">My Wishlist</h1>
+
+  {% for item in items %}
+    <div class="d-flex align-items-center justify-content-between mb-2">
+      <div>
+        <strong>{{ item.product.name }}</strong><br>
+        R{{ item.product.price }}
+      </div>
+      <div>
+        <a class="btn btn-sm btn-outline-primary"
+           href="{% url 'products:detail' item.product.slug %}">
+          View
+        </a>
+        <a class="btn btn-sm btn-outline-danger ms-2"
+           href="{% url 'accounts:wishlist_remove' item.product.id %}">
+          Remove
+        </a>
+      </div>
+    </div>
+  {% empty %}
+    <p>Your wishlist is empty.</p>
+  {% endfor %}
+{% endblock %}

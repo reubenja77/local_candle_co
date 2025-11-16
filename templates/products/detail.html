@@ -14,7 +14,7 @@
       <a class="btn btn-success" href="{% url 'checkout:cart_add' product.id %}">Add to Cart</a>
 
       {% if user.is_authenticated %}
-        <a class="btn btn-outline-secondary ms-2" href="{% url 'accounts:wishlist_add' product.id %}">
+        <a class="btn btn-outline-secondary" href="{% url 'accounts:wishlist_add' product.id %}">
           Add to Wishlist
         </a>
       {% else %}
