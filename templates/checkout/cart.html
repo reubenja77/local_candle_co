@@ -31,6 +31,7 @@
       </tbody>
     </table>
     <p class="h5">Total: R{{ total }}</p>
+    <a class="btn btn-success" href="{% url 'checkout:checkout' %}">Proceed to Checkout</a>
   {% else %}
     <p>Your cart is empty.</p>
   {% endif %}
