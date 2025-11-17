@@ -1,1 +1,162 @@
 # local_candle_co
+Hand-poured scented candles. Small batch. Delivered.
+
+## 1. Introduction
+
+Local Candle Co is a fully functional e-commerce application built using Django, featuring product browsing, cart management, checkout and payment processing using Stripe, user authentication with Django-Allauth, wishlist functionality, newsletter signup, FAQ management, and a contact system.
+
+This project is my Portfolio Project for the E-Commerce Applications module. It demonstrates a full-stack cloud-hosted online store with marketing tools, SEO, UX design, and secure authentication.
+
+## 2. Business Model
+
+Local Candle Co follows a straightforward e-commerce business model, focusing on single-purchase retail through a product catalogue.
+
+### Business Type
+
+B2C (Business to Consumer) retail of scented candles.
+
+### Revenue Model
+- Direct product sales through a checkout system powered by Stripe.
+- No subscriptions or recurring payments.
+- Newsletter allows for future promotions and product launches.
+
+### Customer Segment
+- Home décor enthusiasts
+- Gift buyers
+- Candle lovers who prefer artisanal, hand-poured products
+- Customers seeking locally sourced candles
+
+### Value Proposition
+- Hand-crafted, small-batch candles
+- Simple, fast checkout
+- Quality scents
+- Fast delivery
+- Easy communication through built-in contact form
+
+### Customer Acquisition
+- SEO
+- Newsletter signups
+- Facebook business page mockup (marketing presence)
+- Clean UX design that reduces friction in browsing and purchasing
+
+### Reason for Authentication
+Users create accounts to:
+- Save wishlist items
+- View order details in email
+- Save contact details for future purchases
+
+## 3. UX Design
+### 3.1 Project Goals
+- Provide a simple, beautiful candle store
+- Let users browse and purchase easily
+- Allow admin to manage catalogue, orders, FAQs, and contact messages
+- Include marketing features (newsletter, SEO, mock Facebook page)
+- Provide accessible UX with clean navigation and messaging
+
+### 3.2 Target Audience
+- Adults aged 20–50
+- Online shoppers looking for décor items
+- Gift buyers
+
+### 3.3 User Stories
+#### MUST-HAVES:
+- Browse all available candles
+- View product detail
+- Add candle to cart
+- View cart and checkout securely
+- Admin can manage products
+- Admin can manage orders
+- User registration, login & logout
+- Wishlist items
+- Newsletter signup
+- Contact the store
+- View FAQs
+
+REMEMBER: Add screenshot of Kanban board
+
+### 3.4 Wireframes
+REMEMBER: Add: Desktop + Mobile wireframes for Home, Product Detail, Cart, Checkout, Wishlist
+
+### 3.5 Entity Relationship Diagram (ERD)
+REMEMBER: Add screenshot of dbdiagram.io here
+
+### 3.6 Design Choices
+REMEMBER: Elaborate on below section
+- Bootstrap for responsive design
+- Neutral colour palette (cream, olive, charcoal)
+- Clean serif + sans-serif fonts
+- Minimal layout to place focus on product photos
+
+## 4. Features
+### Implemented Features
+- Browse products
+- Product detail pages
+- Wishlist
+- Session-based cart
+- Checkout with Stripe
+- Order creation
+- Contact form
+- Newsletter signup
+- FAQ page
+- Admin management for products, reviews, FAQs, contacts, orders
+- SEO (meta tags, robots.txt, sitemap.xml)
+- Custom error pages (404, 500)
+
+### Future Features
+- Product reviews
+- Coupon codes
+- Delivery tracking
+- Product categories
+
+## 5. Technologies Used
+### Backend:
+- Python
+- Django
+- Django Allauth
+- Django Sitemaps
+
+### Frontend
+- Bootstrap 5
+- HTML5, 
+- CSS3
+- Cloudinary (optional for images)
+
+### Payments
+- Stripe PaymentIntent API
+
+### Hosting
+- Heroku
+- Gunicorn
+- Whitenoise / Cloudinary Storage
+
+## 6. SEO Implementation
+- Meta description tags on key pages
+- robots.txt
+- sitemap.xml
+- Friendly URLs
+- Human-readable page titles
+- Internal linking via navbar and footer
+- No lorem ipsum
+- 404 and 500 pages with correct responses
+
+## 7. Testing
+### Manual Testing
+####Tested:
+- Cart add/remove
+- Checkout total calculation
+- Stripe payment test mode
+- Wishlist add/remove
+- Login/logout/registration
+- Contact form submits to DB
+- Newsletter signup stores email
+- CRUD via admin
+REMEMBER: Add a table of tests here
+
+## 8. Deployment (LO1)
+Heroku Deployment Steps
+REMEMBER: Add steps here
+
+## 9. Credits
+RMEMBER: Add referrences here
+Product photos: Unsplash/Pexels placeholders
+Inspiration from Boutique Ado project
