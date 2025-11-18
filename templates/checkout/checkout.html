@@ -1,14 +1,103 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% block page_title %}Checkout{% endblock %}
 
 {% block content %}
   <h1 class="mb-4">Checkout</h1>
 
-  <p class="lead">Order total: R{{ total }}</p>
+  {% if items %}
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Your order</h3>
+        <ul class="list-group mb-3">
+          {% for item in items %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <div>
+                <strong>{{ item.product.name }}</strong><br>
+                Qty: {{ item.quantity }}
+              </div>
+              <span>R{{ item.subtotal }}</span>
+            </li>
+          {% endfor %}
+          <li class="list-group-item d-flex justify-content-between">
+            <strong>Total</strong>
+            <strong>R{{ total }}</strong>
+          </li>
+        </ul>
+      </div>
 
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button class="btn btn-primary">Pay securely</button>
-  </form>
+      <div class="col-md-6">
+        <h3>Payment details</h3>
+
+        {% if client_secret %}
+          <form id="payment-form">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="card-element" class="form-label">Card details</label>
+              <div id="card-element" class="form-control"></div>
+            </div>
+
+            <div id="card-errors" class="text-danger mb-3" role="alert"></div>
+
+            <button id="submit" class="btn btn-primary w-100">
+              Pay R{{ total }}
+            </button>
+          </form>
+        {% else %}
+          <p>Your cart is empty.</p>
+        {% endif %}
+
+      </div>
+    </div>
+  {% else %}
+    <p>Your cart is empty.</p>
+  {% endif %}
+{% endblock %}
+
+{% block extra_js %}
+  {% if client_secret %}
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+      const stripePublicKey = "{{ stripe_public_key|default:'' }}";
+      const clientSecret = "{{ client_secret|default:'' }}";
+
+      if (!stripePublicKey || !clientSecret) {
+        console.error("Stripe public key or client secret missing.");
+      } else {
+        const stripe = Stripe(stripePublicKey);
+        const elements = stripe.elements();
+        const cardElement = elements.create('card');
+        cardElement.mount('#card-element');
+
+        const form = document.getElementById('payment-form');
+        const errorDiv = document.getElementById('card-errors');
+        const submitButton = document.getElementById('submit');
+
+        form.addEventListener('submit', async function (e) {
+          e.preventDefault();
+          submitButton.disabled = true;
+          errorDiv.textContent = '';
+
+          const { paymentIntent, error } = await stripe.confirmCardPayment(
+            clientSecret,
+            {
+              payment_method: {
+                card: cardElement,
+              },
+            }
+          );
+
+          if (error) {
+            errorDiv.textContent = error.message;
+            submitButton.disabled = false;
+          } else if (paymentIntent && paymentIntent.status === 'succeeded') {
+            // Payment success – go to success page
+            window.location.href = "{% url 'checkout:success' %}";
+          } else {
+            errorDiv.textContent = "Something went wrong with the payment.";
+            submitButton.disabled = false;
+          }
+        });
+      }
+    </script>
+  {% endif %}
 {% endblock %}
