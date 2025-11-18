@@ -124,8 +124,13 @@ DATABASES = {
 
 DATABASE_URL = os.environ.get('DATABASE_URL')
 
-if DATABASE_URL:
-    DATABASES['default'] = dj_database_url.parse(DATABASE_URL, conn_max_age=600, ssl_require=True)
+# Only override if DATABASE_URL is set AND looks like Postgres
+if DATABASE_URL and DATABASE_URL.startswith(('postgres://', 'postgresql://')):
+    DATABASES['default'] = dj_database_url.parse(
+        DATABASE_URL,
+        conn_max_age=600,
+        ssl_require=True,   # fine for Heroku/Postgres
+    )
 
 
 # Password validation
