@@ -1,67 +1,277 @@
-/* Global look */
+/* ----------------------------------------
+   Local Candle Co – Simple Elegant Theme
+   ---------------------------------------- */
+
+/* Color palette */
+:root {
+  --lc-bg: #f8f5f1;
+  --lc-bg-alt: #fdfaf6;
+  --lc-border: #e2d9cc;
+  --lc-primary: #6b4f3f;
+  --lc-primary-dark: #543d31;
+  --lc-accent: #b8865d;
+  --lc-accent-dark: #9b714d;
+  --lc-text-main: #3c3128;
+  --lc-text-muted: #7b6b5d;
+}
+
+/* Global */
 body {
-  background-color: #f8f5f1;
+  background: radial-gradient(circle at top, #fffdf8 0, var(--lc-bg) 55%);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--lc-text-main);
+}
+
+/* Container width */
+main.container {
+  max-width: 1100px;
+  padding-bottom: 3rem;
+}
+
+/* Headings */
+h1, h2, h3, h4 {
+  color: var(--lc-text-main);
+  letter-spacing: 0.02em;
+}
+
+h1 {
+  font-size: 1.9rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
 /* Navbar */
 .navbar {
-  background-color: #fdfaf6;
-  border-bottom: 1px solid #e2d9cc;
+  background-color: var(--lc-bg-alt);
+  border-bottom: 1px solid var(--lc-border);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
 }
 
 .navbar-brand {
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  color: var(--lc-primary) !important;
 }
 
-/* Buttons */
-.btn-primary {
-  background-color: #6b4f3f;
-  border-color: #6b4f3f;
+.navbar a {
+  color: var(--lc-text-main);
 }
 
-.btn-primary:hover {
-  background-color: #543d31;
-  border-color: #543d31;
+.navbar a:hover {
+  color: var(--lc-primary-dark);
 }
 
-.btn-success {
-  background-color: #b8865d;
-  border-color: #b8865d;
-}
-
-.btn-success:hover {
-  background-color: #9b714d;
-  border-color: #9b714d;
-}
-
-/* Cards */
-.card {
-  border-radius: 14px;
-  border: 1px solid #e4d8cc;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
-}
-
-.card-img-top {
-  border-top-left-radius: 14px;
-  border-top-right-radius: 14px;
-  object-fit: cover;
-  height: 220px;
-}
-
-/* Page layout */
-main.container {
-  max-width: 1100px;
-}
-
-/* Footer newsletter area */
-main .row:last-of-type h5 {
-  font-weight: 600;
-}
-
+/* Messages (Django messages) */
 .alert-info {
   background-color: #fff7ea;
   border-color: #f1e0c5;
   color: #5b4431;
+  border-radius: 10px;
+}
+
+/* Buttons */
+.btn {
+  border-radius: 999px;
+  font-weight: 500;
+  padding-inline: 1.2rem;
+}
+
+.btn-primary {
+  background-color: var(--lc-primary);
+  border-color: var(--lc-primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--lc-primary-dark);
+  border-color: var(--lc-primary-dark);
+}
+
+.btn-success {
+  background-color: var(--lc-accent);
+  border-color: var(--lc-accent);
+}
+
+.btn-success:hover {
+  background-color: var(--lc-accent-dark);
+  border-color: var(--lc-accent-dark);
+}
+
+.btn-outline-secondary {
+  color: var(--lc-text-main);
+  border-color: var(--lc-border);
+}
+
+.btn-outline-secondary:hover {
+  background-color: var(--lc-bg-alt);
+  border-color: var(--lc-primary);
+  color: var(--lc-primary-dark);
+}
+
+.btn-outline-danger {
+  border-color: #c8553d;
+  color: #c8553d;
+}
+
+.btn-outline-danger:hover {
+  background-color: #c8553d;
+  color: #fff;
+}
+
+/* Links */
+a {
+  color: var(--lc-primary);
+}
+
+a:hover {
+  color: var(--lc-primary-dark);
+}
+
+/* Cards (product, FAQ, etc.) */
+.card {
+  border-radius: 18px;
+  border: 1px solid var(--lc-border);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  background-color: #fff;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.06);
+}
+
+.card-img-top {
+  object-fit: cover;
+  height: 220px;
+}
+
+/* Product titles & text */
+.card-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.card-body p {
+  margin-bottom: 0.25rem;
+}
+
+/* Hero / top section on product list */
+.hero-section {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 2.2rem 2rem;
+  margin-bottom: 1.75rem;
+  border: 1px solid var(--lc-border);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.05);
+}
+
+.hero-section h1 {
+  font-size: 2rem;
+  margin-bottom: 0.25rem;
+}
+
+.hero-section p {
+  color: var(--lc-text-muted);
+  margin-bottom: 0;
+}
+
+/* Forms */
+form {
+  max-width: 540px;
+}
+
+form .form-control {
+  border-radius: 999px;
+  border-color: var(--lc-border);
+}
+
+form .form-control:focus {
+  box-shadow: 0 0 0 0.15rem rgba(107, 79, 63, 0.18);
+  border-color: var(--lc-primary);
+}
+
+/* Newsletter strip */
+main .row:last-of-type h5 {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+main .row:last-of-type p {
+  color: var(--lc-text-muted);
+  margin-bottom: 0.5rem;
+}
+
+/* Tables (cart, admin-like views) */
+.table {
+  background-color: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.table > :not(caption) > * > * {
+  padding-block: 0.75rem;
+}
+
+.table thead {
+  background-color: var(--lc-bg-alt);
+}
+
+/* FAQ accordion */
+.accordion-item {
+  border-radius: 14px !important;
+  overflow: hidden;
+  border: 1px solid var(--lc-border);
+  margin-bottom: 0.75rem;
+}
+
+.accordion-button {
+  background-color: #fff;
+  font-weight: 500;
+}
+
+.accordion-button:not(.collapsed) {
+  color: var(--lc-primary-dark);
+  background-color: #fff7ea;
+}
+
+/* Wishlist / Lists where things are aligned horizontally */
+.d-flex.align-items-center.justify-content-between.mb-2 {
+  background-color: #fff;
+  border-radius: 999px;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--lc-border);
+}
+
+/* Checkout summary text */
+.lead {
+  color: var(--lc-text-muted);
+}
+
+/* Small utility for centered sections */
+.section-center {
+  max-width: 620px;
+  margin-inline: auto;
+}
+
+/* Remove any border or stroke from the card header row */
+.card-body .d-flex {
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* Larger View button to match text proportions */
+.view-btn {
+  padding: 0.45rem 1.1rem;
+  font-size: 0.9rem;
+  border-radius: 999px;
+  white-space: nowrap;
 }
