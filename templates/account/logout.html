@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block page_title %}Log out{% endblock %}
+{% block meta_description %}Log out of your Local Candle Co account.{% endblock %}
+
+{% block content %}
+  <div class="section-center">
+    <div class="hero-section text-center">
+      <h1 class="mb-3">Log out</h1>
+      <p class="mb-4 text-muted">Are you sure you want to log out of your account?</p>
+
+      <form method="post" action="{% url 'account_logout' %}">
+        {% csrf_token %}
+        <button class="btn btn-outline-secondary me-2" type="submit" name="action">
+          Log out
+        </button>
+        <a href="/" class="btn btn-primary">
+          Stay signed in
+        </a>
+      </form>
+    </div>
+  </div>
+{% endblock %}
