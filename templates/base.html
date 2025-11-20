@@ -25,22 +25,68 @@
       <div class="container">
         <a class="navbar-brand" href="/">Local Candle Co</a>
 
-        <div class="ms-auto me-3">
-          <a class="me-3" href="{% url 'marketing:faq' %}">FAQ</a>
-          <a class="me-3" href="{% url 'marketing:contact' %}">Contact</a>
+        <!-- Mobile burger + dropdown -->
+        <div class="d-md-none ms-auto">
+          <div class="dropdown">
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <a class="dropdown-item" href="{% url 'marketing:faq' %}"
+                  >FAQ</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="{% url 'marketing:contact' %}"
+                  >Contact</a
+                >
+              </li>
+              {% if user.is_authenticated %}
+              <li><a class="dropdown-item" href="/wl/">Wishlist</a></li>
+              <li>
+                <a class="dropdown-item" href="/accounts/logout/">Logout</a>
+              </li>
+              {% else %}
+              <li>
+                <a class="dropdown-item" href="/accounts/login/">Login</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/accounts/signup/">Register</a>
+              </li>
+              {% endif %}
+              <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item" href="/checkout/cart/">Cart</a></li>
+            </ul>
+          </div>
         </div>
 
-        <div class="ms-auto">
+        <!-- Desktop nav (md and up) -->
+        <div class="d-none d-md-flex ms-auto me-3">
+          <a class="me-3 nav-link" href="{% url 'marketing:faq' %}">FAQ</a>
+          <a class="me-3 nav-link" href="{% url 'marketing:contact' %}"
+            >Contact</a
+          >
+        </div>
+
+        <div class="d-none d-md-flex">
           {% if user.is_authenticated %}
           <a class="btn btn-outline-secondary me-2" href="/wl/">Wishlist</a>
-          <a class="btn btn-outline-danger" href="/accounts/logout/">Logout</a>
+          <a class="btn btn-outline-danger me-2" href="/accounts/logout/"
+            >Logout</a
+          >
           {% else %}
           <a class="btn btn-primary me-2" href="/accounts/login/">Login</a>
-          <a class="btn btn-outline-primary" href="/accounts/signup/"
+          <a class="btn btn-outline-primary me-2" href="/accounts/signup/"
             >Register</a
           >
           {% endif %}
-          <a class="btn btn-success ms-2" href="/checkout/cart/">Cart</a>
+          <a class="btn btn-success" href="/checkout/cart/">Cart</a>
         </div>
       </div>
     </nav>
@@ -75,6 +121,9 @@
         </div>
       </div>
     </main>
+    <!-- Bootstrap JS bundle (for navbar toggler etc.) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
     {% block extra_js %}{% endblock %}
   </body>
 </html>
