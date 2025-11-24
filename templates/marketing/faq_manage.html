@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block page_title %}Manage FAQs{% endblock %}
+{% block meta_description %}Admin management for Local Candle Co FAQ entries.{% endblock %}
+
+{% block content %}
+  <h1 class="mb-4">Manage FAQs</h1>
+
+  <p class="mb-3">
+    <a class="btn btn-primary" href="{% url 'marketing:faq_add' %}">Add FAQ</a>
+    <a class="btn btn-outline-secondary ms-2" href="{% url 'marketing:faq' %}">View public FAQ page</a>
+  </p>
+
+  {% if faqs %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Question</th>
+          <th>Published</th>
+          <th>Sort order</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for f in faqs %}
+        <tr>
+          <td>{{ f.question }}</td>
+          <td>{{ f.is_published|yesno:"Yes,No" }}</td>
+          <td>{{ f.sort_order }}</td>
+          <td class="text-end">
+            <a class="btn btn-sm btn-outline-primary me-2" href="{% url 'marketing:faq_edit' f.pk %}">Edit</a>
+            <a class="btn btn-sm btn-outline-danger" href="{% url 'marketing:faq_delete' f.pk %}">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No FAQs yet.</p>
+  {% endif %}
+{% endblock %}
