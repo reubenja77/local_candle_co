@@ -3,12 +3,14 @@ from decimal import Decimal
 from django.conf import settings
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.core.mail import send_mail
 
 import stripe
 
 from products.models import Product
 from .forms import CheckoutForm
 from .models import Order
+
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -155,13 +157,38 @@ def checkout_view(request):
                 messages.error(request, "There was a problem with the payment. Please try again.")
                 return redirect('checkout:error')
 
-            # Create order marked as paid (simplified, no webhooks)
+                        # Create order marked as paid (simplified, no webhooks)
             order = form.save(commit=False)
             order.user = request.user if request.user.is_authenticated else None
             order.total_amount = total
             order.stripe_pid = intent.id
             order.status = 'paid'
             order.save()
+
+            # Send a simple confirmation email (console backend in dev)
+            subject = "Your Local Candle Co order"
+            message = (
+                f"Hi {order.full_name},\n\n"
+                f"Thank you for your order from Local Candle Co.\n"
+                f"Order ID: {order.id}\n"
+                f"Total: R{order.total_amount}\n\n"
+                "We’re getting your candles ready and will email you when they ship.\n\n"
+                "Warm regards,\n"
+                "Local Candle Co"
+            )
+            recipient_list = [order.email]
+
+            try:
+                send_mail(
+                    subject,
+                    message,
+                    settings.DEFAULT_FROM_EMAIL,
+                    recipient_list,
+                    fail_silently=True,  # don't break checkout if email fails
+                )
+            except Exception:
+                # Optional: log or show a non-blocking message later
+                pass
 
             # clear cart
             request.session[CART_SESSION_KEY] = {}
