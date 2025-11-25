@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block page_title %}Your Cart{% endblock %}
+{% block meta_description %}Review your Local Candle Co cart and proceed to secure checkout.{% endblock %}
 
 {% block content %}
   <h1 class="mb-4">Your Cart</h1>
@@ -9,7 +10,7 @@
       <thead>
         <tr>
           <th>Product</th>
-          <th>Qty</th>
+          <th style="width: 180px;">Qty</th>
           <th>Total</th>
           <th></th>
         </tr>
@@ -18,9 +19,26 @@
       {% for item in items %}
         <tr>
           <td>{{ item.product.name }}</td>
-          <td>{{ item.qty }}</td>
-          <td>R{{ item.line_total }}</td>
           <td>
+            <form method="post"
+                  action="{% url 'checkout:cart_update' item.product.id %}"
+                  class="d-flex align-items-center">
+              {% csrf_token %}
+              <input
+                type="number"
+                name="quantity"
+                value="{{ item.qty }}"
+                min="1"
+                class="form-control form-control-sm me-2"
+                style="max-width: 80px;"
+              />
+              <button class="btn btn-sm btn-outline-primary" type="submit">
+                Update
+              </button>
+            </form>
+          </td>
+          <td>R{{ item.line_total }}</td>
+          <td class="text-end">
             <a class="btn btn-sm btn-outline-danger"
                href="{% url 'checkout:cart_remove' item.product.id %}">
               Remove
@@ -30,9 +48,21 @@
       {% endfor %}
       </tbody>
     </table>
-    <p class="h5">Total: R{{ total }}</p>
-    <a class="btn btn-success" href="{% url 'checkout:checkout' %}">Proceed to Checkout</a>
+
+    <p class="h5 text-end mt-3">Order total: R{{ total }}</p>
+
+    <div class="d-flex justify-content-between mt-3">
+      <a class="btn btn-outline-secondary" href="{% url 'products:list' %}">
+        Continue shopping
+      </a>
+      <a class="btn btn-success" href="{% url 'checkout:checkout' %}">
+        Proceed to Checkout
+      </a>
+    </div>
   {% else %}
     <p>Your cart is empty.</p>
+    <a class="btn btn-primary mt-2" href="{% url 'products:list' %}">
+      Back to shop
+    </a>
   {% endif %}
 {% endblock %}
