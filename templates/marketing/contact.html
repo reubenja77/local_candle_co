@@ -3,12 +3,40 @@
 {% block meta_description %}Contact Local Candle Co for questions about your order, shipping, or our scented candles.{% endblock %}
 
 {% block content %}
-  <h1 class="mb-4">Contact us</h1>
-  <p class="mb-3">Have a question about our candles or your order? Send us a message.</p>
+  <div class="section-center">
+    <div class="hero-section">
+      <h1 class="mb-3">Contact us</h1>
+      <p class="mb-4 text-muted">
+        Have a question about your order or our candles? Send us a message and we’ll get back to you.
+      </p>
 
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button class="btn btn-primary">Send message</button>
-  </form>
+      <form method="post">
+        {% csrf_token %}
+
+        <div class="mb-3">
+          {{ form.name.label_tag }}
+          {{ form.name }}
+        </div>
+
+        <div class="mb-3">
+          {{ form.email.label_tag }}
+          {{ form.email }}
+        </div>
+
+        <div class="mb-3">
+          {{ form.subject.label_tag }}
+          {{ form.subject }}
+        </div>
+
+        <div class="mb-3">
+          {{ form.message.label_tag }}
+          {{ form.message }}
+        </div>
+
+        <button class="btn btn-primary mt-2" type="submit">
+          Send message
+        </button>
+      </form>
+    </div>
+  </div>
 {% endblock %}
