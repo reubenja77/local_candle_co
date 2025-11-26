@@ -140,19 +140,21 @@ REMEMBER: Elaborate on below section
 - 404 and 500 pages with correct responses
 
 ## 7. Testing
-### Manual Testing
-####Tested:
-- Cart add/remove
-- Checkout total calculation
-- Stripe payment test mode
-- Wishlist add/remove
-- Login/logout/registration
-- Contact form submits to DB
-- Newsletter signup stores email
-- CRUD via admin
-REMEMBER: Add a table of tests here
 
-## 8. Deployment (LO1)
+A full detailed testing document is available here:
+
+🔗 **[View Full Testing Document](TESTING.md)**
+
+The testing document includes:
+- Manual feature testing
+- User story testing
+- Validator testing (HTML, CSS, Python)
+- Lighthouse accessibility checks
+- Browser/device testing
+- Bugs and fixes
+
+
+## 8. Deployment
 Heroku Deployment Steps
 REMEMBER: Add steps here
 
