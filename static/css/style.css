@@ -135,21 +135,23 @@ a:hover {
 /* Cards (product, FAQ, etc.) */
 .card {
   border-radius: 18px;
-  border: 1px solid var(--lc-border);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+  border: none;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
   overflow: hidden;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
   background-color: #fff;
 }
 
 .card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(0,0,0,0.06);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 36px rgba(0,0,0,0.09);
 }
 
 .card-img-top {
   object-fit: cover;
-  height: 220px;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  display: block;
 }
 
 /* Product titles & text */
@@ -161,6 +163,14 @@ a:hover {
 
 .card-body p {
   margin-bottom: 0.25rem;
+}
+
+/* Product detail image height fix */
+.product-detail-image {
+  object-fit: cover;
+  width: 100%;
+  height: 260px; /* or 220px if you prefer the exact previous height */
+  border-radius: 18px;
 }
 
 /* Hero / top section on product list */
@@ -224,6 +234,16 @@ main .row:last-of-type p {
   background-color: var(--lc-bg-alt);
 }
 
+/* More comfortable spacing in cart table */
+.table td,
+.table th {
+  vertical-align: middle;
+}
+
+.table td:nth-child(2) {
+  min-width: 200px;
+}
+
 /* FAQ accordion */
 .accordion-item {
   border-radius: 14px !important;
@@ -246,7 +266,7 @@ main .row:last-of-type p {
 .d-flex.align-items-center.justify-content-between.mb-2 {
   background-color: #fff;
   border-radius: 999px;
-  padding: 0.6rem 0.9rem;
+  padding: 0.8rem 1.2rem;
   border: 1px solid var(--lc-border);
 }
 
@@ -274,4 +294,159 @@ main .row:last-of-type p {
   font-size: 0.9rem;
   border-radius: 999px;
   white-space: nowrap;
+}
+
+/* Emphasise cart total area */
+.cart-total-row {
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+/* Cart quantity form spacing */
+.cart-qty-form {
+  gap: 0.5rem;
+}
+
+.cart-qty-input {
+  max-width: 90px;
+}
+
+@media (max-width: 576px) {
+  .cart-qty-form {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ----------------------------------------
+   Auth pages (login / signup / logout)
+   ---------------------------------------- */
+
+.section-center {
+  max-width: 480px;
+  margin: 2.5rem auto;
+}
+
+.section-center .hero-section {
+  padding: 2rem 2rem 2.4rem;
+}
+
+.section-center .hero-section h1 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.section-center .hero-section p.text-muted {
+  font-size: 0.95rem;
+}
+
+/* Tidy spacing for Django's form.as_p output */
+.section-center .hero-section form p {
+  margin-bottom: 0.9rem;
+}
+
+/* Labels and inputs */
+.section-center .hero-section label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  color: var(--lc-text-main);
+}
+
+.section-center .hero-section input[type="text"],
+.section-center .hero-section input[type="email"],
+.section-center .hero-section input[type="password"] {
+  width: 100%;
+  border-radius: 999px;
+  border: 1px solid var(--lc-border);
+  padding: 0.45rem 0.9rem;
+  font-size: 0.95rem;
+}
+
+/* Focus state */
+.section-center .hero-section input[type="text"]:focus,
+.section-center .hero-section input[type="email"]:focus,
+.section-center .hero-section input[type="password"]:focus {
+  outline: none;
+  border-color: var(--lc-primary);
+  box-shadow: 0 0 0 0.12rem rgba(107, 79, 63, 0.18);
+}
+
+/* Make main auth button stretch nicely */
+.section-center .hero-section button.btn {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Small footer links on auth pages */
+.section-center .hero-section small.text-muted {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.section-center .hero-section small.text-muted a {
+  text-decoration: underline;
+}
+
+/* Textarea styling for contact / long messages */
+.section-center .hero-section textarea {
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid var(--lc-border);
+  padding: 0.6rem 0.9rem;
+  font-size: 0.95rem;
+  min-height: 140px;
+  resize: vertical;
+}
+
+.section-center .hero-section textarea:focus {
+  outline: none;
+  border-color: var(--lc-primary);
+  box-shadow: 0 0 0 0.12rem rgba(107, 79, 63, 0.18);
+}
+
+/* Reviews section layout */
+section h2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Contact form spacing */
+.contact-form-wrapper {
+  max-width: 540px;
+  margin-inline: auto;
+}
+
+.contact-form-wrapper form p {
+  margin-bottom: 0.9rem;
+}
+
+/* FIX for white gap under product images */
+.card img,
+.product-detail-image,
+.card-img-top {
+  display: block;        /* Remove inline gap */
+  margin: 0;             /* Remove extra space */
+  padding: 0;            /* Remove extra padding */
+  border: 0;             /* Ensure no border gap */
+  line-height: 0;        /* Remove baseline spacing */
+}
+
+/* Ensure the card container has no padding */
+.card {
+  padding: 0 !important;
+  border: none;
+  overflow: hidden;      /* Prevent white strip from container overflow */
+}
+
+/* Force all product images to fully fill the container */
+.card-img-top,
+.product-detail-image {
+  width: 100%;
+  height: 420px;          /* or your preferred height */
+  object-fit: cover;
+  object-position: center;
+  background-color: #fff; /* Prevent any parent background bleeding through */
 }
