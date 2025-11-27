@@ -462,3 +462,36 @@ section h2 {
   object-position: center;
   background-color: #fff; /* Prevent any parent background bleeding through */
 }
+
+/* -----------------------------
+   CART PAGE POLISHING
+   ----------------------------- */
+
+/* Space rows better */
+.table.cart-table > :not(caption) > * > * {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+/* Quantity input size */
+.cart-qty-input {
+  width: 80px;
+  border-radius: 12px;
+  padding: 0.35rem 0.5rem;
+}
+
+/* Quantity + Update spacing */
+.cart-qty-form {
+  gap: 0.5rem;
+}
+
+/* Total column emphasis */
+.cart-table td strong {
+  font-size: 1rem;
+}
+
+/* Remove button spacing */
+.cart-table a.btn-outline-danger {
+  padding: 0.3rem 0.8rem;
+  border-radius: 12px;
+}
