@@ -262,12 +262,24 @@ main .row:last-of-type p {
   background-color: #fff7ea;
 }
 
-/* Wishlist / Lists where things are aligned horizontally */
+/* Wishlist / list rows */
 .d-flex.align-items-center.justify-content-between.mb-2 {
   background-color: #fff;
-  border-radius: 999px;
-  padding: 0.8rem 1.2rem;
+  border-radius: 18px;
+  padding: 0.85rem 1.4rem;
   border: 1px solid var(--lc-border);
+  gap: 0.75rem;
+}
+
+/* Tidy wishlist text spacing */
+.d-flex.align-items-center.justify-content-between.mb-2 h5,
+.d-flex.align-items-center.justify-content-between.mb-2 p {
+  margin-bottom: 0;
+}
+
+/* Keep wishlist buttons tidy */
+.d-flex.align-items-center.justify-content-between.mb-2 .btn {
+  white-space: nowrap;
 }
 
 /* Checkout summary text */
