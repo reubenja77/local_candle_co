@@ -161,7 +161,32 @@ Local Candle Co
 
 ---
 
-## 1.8 FAQ CRUD (Admin Only)
+## 1.8 FAQ CRUD Management (Admin Only)
+
+#### FAQ Management (CRUD)
+
+| Test Area | Description |
+|-----------|-------------|
+| **Feature** | Admin-only FAQ CRUD (create, read, update, delete) |
+| **Location** | `marketing/views.py`, `marketing/forms.py`, `marketing/urls.py` |
+| **Type** | Manual test |
+
+**Test Steps**
+
+1. Log in as a staff user / superuser.
+2. Visit `/marketing/faq/manage/`.
+3. Click **"Add FAQ"**, fill in question, answer, sort order, and mark **Published**, then save.
+4. Confirm the new FAQ appears in the manage table and on the public `/marketing/faq/` page.
+5. Click **Edit** next to an FAQ, change the text, and save. Confirm changes appear on both manage and public FAQ pages.
+6. Click **Delete** next to an FAQ and confirm. Ensure the FAQ is removed from both manage and public views.
+
+**Expected Result**
+
+- Staff users can add, edit, and delete FAQ entries from `/marketing/faq/manage/`.
+- Only published FAQ entries appear on the public FAQ page at `/marketing/faq/`.
+- Non-staff users cannot access `/marketing/faq/manage/`, `/marketing/faq/add/`, `/marketing/faq/<pk>/edit/`, or `/marketing/faq/<pk>/delete/` (redirected to login).
+
+**Pass / Fail**
 
 | Test | Result |
 |------|--------|
