@@ -1,73 +1,94 @@
 {% extends 'base.html' %}
 {% block page_title %}Your Cart{% endblock %}
-{% block meta_description %}View and update the items in your Local Candle Co shopping cart.{% endblock %}
+{% block meta_description %}Review your Local Candle Co cart and proceed to checkout.{% endblock %}
 
 {% block content %}
-  <h1 class="mb-4">Your Cart</h1>
+  <div class="cart-table-wrap">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="mb-4">Your Cart</h1>
 
-  {% if items %}
-    <div class="table-responsive mb-4">
-      <table class="table align-middle">
-        <thead>
-          <tr>
-            <th scope="col">Product</th>
-            <th scope="col" style="width: 220px;">Quantity</th>
-            <th scope="col">Line total</th>
-            <th scope="col" class="text-end">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-        {% for item in items %}
-          <tr>
-            <td>{{ item.product.name }}</td>
-            <td>
-              <form method="post"
-                    action="{% url 'checkout:cart_update' item.product.id %}"
-                    class="d-flex align-items-center gap-2">
-                {% csrf_token %}
-                <input
-                  type="number"
-                  name="quantity"
-                  value="{{ item.qty }}"
-                  min="1"
-                  class="form-control form-control-sm"
-                  style="max-width: 90px;"
-                />
-                <button class="btn btn-sm btn-outline-primary" type="submit">
-                  Update
-                </button>
-              </form>
-            </td>
-            <td>R{{ item.line_total }}</td>
-            <td class="text-end">
-              <a class="btn btn-sm btn-outline-danger"
-                 href="{% url 'checkout:cart_remove' item.product.id %}">
-                Remove
-              </a>
-            </td>
-          </tr>
-        {% endfor %}
-        </tbody>
-      </table>
-    </div>
+        {% if items %}
+          <div class="table-responsive">
+            <table class="table cart-table mb-3">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th class="text-center">Quantity</th>
+                  <th class="text-end">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in items %}
+                  <tr>
+                    <!-- Product + thumbnail -->
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <img
+                          src="{{ item.product.image_url }}"
+                          alt="{{ item.product.name }}"
+                          class="cart-thumb me-3"
+                        />
+                        <div>
+                          <div class="fw-semibold">{{ item.product.name }}</div>
+                          <div class="text-muted">R{{ item.product.price }}</div>
+                        </div>
+                      </div>
+                    </td>
 
-    <div class="d-flex justify-content-between align-items-center cart-total-row">
-      <p class="mb-0">Total:</p>
-      <p class="mb-0">R{{ total }}</p>
-    </div>
+                    <!-- Quantity + Update + Remove -->
+                    <td class="text-center">
+                      <div class="d-flex align-items-center justify-content-center cart-qty-form">
+                        <form
+                          method="post"
+                          action="{% url 'checkout:cart_update' item.product.id %}"
+                          class="d-flex align-items-center"
+                        >
+                          {% csrf_token %}
+                          <input
+                            type="number"
+                            name="quantity"
+                            value="{{ item.qty }}"
+                            min="1"
+                            class="form-control cart-qty-input me-2"
+                          />
+                          <button
+                            class="btn btn-sm btn-outline-primary cart-qty-update"
+                            type="submit"
+                          >
+                            Update
+                          </button>
+                        </form>
+                        <a
+                          class="btn btn-sm btn-outline-danger ms-2"
+                          href="{% url 'checkout:cart_remove' item.product.id %}"
+                        >
+                          Remove
+                        </a>
+                      </div>
+                    </td>
 
-    <div class="mt-4 d-flex flex-column flex-md-row justify-content-between gap-2">
-      <a class="btn btn-outline-secondary" href="{% url 'products:list' %}">
-        Continue shopping
-      </a>
-      <a class="btn btn-success" href="{% url 'checkout:checkout' %}">
-        Proceed to Checkout
-      </a>
+                    <!-- Line total -->
+                    <td class="text-end">
+                      <strong>R{{ item.line_total }}</strong>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Total + Checkout button (right-aligned, spaced nicely) -->
+          <div class="cart-summary d-flex flex-column align-items-end mt-2">
+            <p class="cart-total-row mb-2">Total: R{{ total }}</p>
+            <a class="btn btn-success mt-1" href="{% url 'checkout:checkout' %}">
+              Proceed to Checkout
+            </a>
+          </div>
+        {% else %}
+          <p>Your cart is empty.</p>
+        {% endif %}
+      </div>
     </div>
-  {% else %}
-    <p>Your cart is empty.</p>
-    <a class="btn btn-primary mt-3" href="{% url 'products:list' %}">
-      Browse candles
-    </a>
-  {% endif %}
+  </div>
 {% endblock %}
