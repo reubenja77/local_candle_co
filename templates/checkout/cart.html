@@ -1,27 +1,91 @@
-{% extends 'base.html' %} {% block page_title %}Your Cart{% endblock %} {% block
-meta_description %}Review your Local Candle Co cart and proceed to checkout.{%
-endblock %} {% block content %}
-<div class="cart-table-wrap">
-  <div class="card">
-    <div class="card-body">
-      <h1 class="mb-4">Your Cart</h1>
+{% extends 'base.html' %}
+{% block page_title %}Your Cart{% endblock %}
+{% block meta_description %}Review your Local Candle Co cart and proceed to checkout.{% endblock %}
 
-      {% if items %}
-      <div class="table-responsive">
-        <table class="table cart-table mb-3">
-          <thead>
-            <tr>
-              <th>Product</th>
-              <th class="text-center">Quantity</th>
-              <th class="text-end">Total</th>
-            </tr>
-          </thead>
-          <tbody>
+{% block content %}
+  <div class="cart-table-wrap">
+    <div class="card">
+      <div class="card-body">
+        <h1 class="mb-4">Your Cart</h1>
+
+        {% if items %}
+          <!-- DESKTOP/TABLET VERSION (table) -->
+          <div class="d-none d-md-block">
+            <div class="table-responsive">
+              <table class="table cart-table mb-3">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th class="text-center">Quantity</th>
+                    <th class="text-end">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for item in items %}
+                    <tr>
+                      <!-- Product + thumbnail -->
+                      <td>
+                        <div class="d-flex align-items-center">
+                          <img
+                            src="{{ item.product.image_url }}"
+                            alt="{{ item.product.name }}"
+                            class="cart-thumb me-3"
+                          />
+                          <div>
+                            <div class="fw-semibold">{{ item.product.name }}</div>
+                            <div class="text-muted">R{{ item.product.price }}</div>
+                          </div>
+                        </div>
+                      </td>
+
+                      <!-- Quantity + Update + Remove -->
+                      <td class="text-center">
+                        <div class="d-flex align-items-center justify-content-center cart-qty-form">
+                          <form
+                            method="post"
+                            action="{% url 'checkout:cart_update' item.product.id %}"
+                            class="d-flex align-items-center"
+                          >
+                            {% csrf_token %}
+                            <input
+                              type="number"
+                              name="quantity"
+                              value="{{ item.qty }}"
+                              min="1"
+                              class="form-control cart-qty-input me-2"
+                            />
+                            <button
+                              class="btn btn-sm btn-outline-primary cart-qty-update"
+                              type="submit"
+                            >
+                              Update
+                            </button>
+                          </form>
+                          <a
+                            class="btn btn-sm btn-outline-danger ms-2"
+                            href="{% url 'checkout:cart_remove' item.product.id %}"
+                          >
+                            Remove
+                          </a>
+                        </div>
+                      </td>
+
+                      <!-- Line total -->
+                      <td class="text-end">
+                        <strong>R{{ item.line_total }}</strong>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- MOBILE VERSION -->
+          <div class="d-block d-md-none">
             {% for item in items %}
-            <tr>
-              <!-- Product + thumbnail -->
-              <td>
-                <div class="d-flex align-items-center">
+              <div class="cart-item-card mb-3">
+                <div class="d-flex align-items-center mb-2">
                   <img
                     src="{{ item.product.image_url }}"
                     alt="{{ item.product.name }}"
@@ -29,20 +93,16 @@ endblock %} {% block content %}
                   />
                   <div>
                     <div class="fw-semibold">{{ item.product.name }}</div>
-                    <div class="text-muted">R{{ item.product.price }}</div>
+                    <div class="text-muted small">R{{ item.product.price }}</div>
                   </div>
                 </div>
-              </td>
 
-              <!-- Quantity + Update + Remove -->
-              <td class="text-center">
-                <div
-                  class="d-flex align-items-center justify-content-center cart-qty-form"
-                >
+                <div class="mb-2">
+                  <div class="small text-muted mb-1">Quantity</div>
                   <form
                     method="post"
                     action="{% url 'checkout:cart_update' item.product.id %}"
-                    class="d-flex align-items-center"
+                    class="d-flex align-items-center cart-qty-form"
                   >
                     {% csrf_token %}
                     <input
@@ -59,36 +119,36 @@ endblock %} {% block content %}
                       Update
                     </button>
                   </form>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mt-2">
+                  <div class="small text-muted">Line total</div>
+                  <div class="fw-semibold">R{{ item.line_total }}</div>
+                </div>
+
+                <div class="mt-3 text-end">
                   <a
-                    class="btn btn-sm btn-outline-danger ms-2"
+                    class="btn btn-sm btn-outline-danger"
                     href="{% url 'checkout:cart_remove' item.product.id %}"
                   >
                     Remove
                   </a>
                 </div>
-              </td>
-
-              <!-- Line total -->
-              <td class="text-end">
-                <strong>R{{ item.line_total }}</strong>
-              </td>
-            </tr>
+              </div>
             {% endfor %}
-          </tbody>
-        </table>
-      </div>
+          </div>
 
-      <!-- Total + Checkout button (right-aligned, spaced nicely) -->
-      <div class="cart-summary d-flex flex-column align-items-end mt-2">
-        <p class="cart-total-row mb-2">Total: R{{ total }}</p>
-        <a class="btn btn-success mt-1" href="{% url 'checkout:checkout' %}">
-          Proceed to Checkout
-        </a>
+          <!-- Total + Checkout button -->
+          <div class="cart-summary d-flex flex-column align-items-end mt-2">
+            <p class="cart-total-row mb-2">Total: R{{ total }}</p>
+            <a class="btn btn-success mt-1" href="{% url 'checkout:checkout' %}">
+              Proceed to Checkout
+            </a>
+          </div>
+        {% else %}
+          <p>Your cart is empty.</p>
+        {% endif %}
       </div>
-      {% else %}
-      <p>Your cart is empty.</p>
-      {% endif %}
     </div>
   </div>
-</div>
 {% endblock %}

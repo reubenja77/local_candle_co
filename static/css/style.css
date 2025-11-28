@@ -557,3 +557,48 @@ section h2 {
 @media (max-width: 576px) {
   .cart-thumb { display: none; }
 }
+
+/* Extra small screens: soften cart padding */
+@media (max-width: 576px) {
+  .cart-table-wrap {
+    padding: 1rem 1rem;
+  }
+}
+
+/* Extra mobile tweaks for cart */
+@media (max-width: 576px) {
+  /* Reduce outer padding around the card on very small screens */
+  .cart-table-wrap {
+    padding: 1rem 0.75rem;
+  }
+
+  /* Reduce cell padding and font size a bit */
+  .cart-table-wrap table td,
+  .cart-table-wrap table th {
+    padding: 0.5rem 0.5rem;
+    font-size: 0.9rem;
+    white-space: normal;
+  }
+
+  /* Let columns auto-size instead of forcing wide percentages */
+  .cart-table-wrap table td:first-child,
+  .cart-table-wrap table td:nth-child(2),
+  .cart-table-wrap table td:nth-child(3),
+  .cart-table-wrap table td:last-child {
+    width: auto;
+  }
+}
+
+/* Mobile app-like cart item cards */
+.cart-item-card {
+  background-color: #fff;
+  border-radius: 18px;
+  border: 1px solid var(--lc-border);
+  padding: 1rem 1.2rem;
+}
+
+/* Tighten spacing in mobile cards */
+.cart-item-card .cart-qty-form {
+  max-width: 100%;
+}
+
