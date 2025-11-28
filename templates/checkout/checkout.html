@@ -1,21 +1,99 @@
-{% extends "base.html" %} {% block page_title %}Checkout{% endblock %} {% block
-meta_description %}Complete your Local Candle Co order and pay securely.{%
-endblock %} {% block content %}
-<h1 class="mb-4">Checkout</h1>
-
-<div class="row">
-  <div class="col-md-6">
-    <p class="lead">Order total: <strong>R{{ total }}</strong></p>
-    <p class="text-muted">
-      Please fill in your details to complete your order.
+{% extends 'base.html' %} {% block page_title %}Checkout{% endblock %} {% block
+meta_description %}Secure checkout for your Local Candle Co order.{% endblock %}
+{% block content %}
+<div class="section-center">
+  <div class="hero-section">
+    <h1 class="mb-3">Checkout</h1>
+    <p class="lead mb-3">Total: R{{ total }}</p>
+    <p class="text-muted mb-4">
+      Enter your details and card information below to complete your order.
     </p>
 
-    <form method="post">
+    <form id="payment-form" method="post" novalidate>
       {% csrf_token %} {{ form.as_p }}
-      <button class="btn btn-primary mt-3" type="submit">
+
+      <!-- Stripe card element -->
+      <div class="mb-3">
+        <label class="form-label d-block mb-2">Card details</label>
+        <div
+          id="card-element"
+          style="
+            padding: 0.6rem 0.8rem;
+            border-radius: 12px;
+            border: 1px solid var(--lc-border);
+            background-color: #fff;
+          "
+        ></div>
+        <div id="card-errors" class="text-danger mt-2" role="alert"></div>
+      </div>
+
+      <!-- Hidden field to store Stripe PaymentIntent id -->
+      <input type="hidden" name="stripe_pid" id="id_stripe_pid" />
+
+      <button id="card-button" class="btn btn-success w-100 mt-3" type="submit">
         Pay R{{ total }}
       </button>
     </form>
   </div>
 </div>
-{% endblock %} {% block extra_js %}{% endblock %}
+{% endblock %} {% block extra_js %}
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  (function () {
+    const stripePublicKey = "{{ stripe_public_key }}";
+    const clientSecret = "{{ client_secret }}";
+
+    const stripe = Stripe(stripePublicKey);
+    const elements = stripe.elements();
+
+    const style = {
+      base: {
+        fontSize: "16px",
+        color: "#3c3128",
+        "::placeholder": { color: "#a8a195" },
+      },
+      invalid: {
+        color: "#c8553d",
+      },
+    };
+
+    const card = elements.create("card", {
+      style: style,
+      hidePostalCode: true,
+    });
+    card.mount("#card-element");
+
+    const form = document.getElementById("payment-form");
+    const cardButton = document.getElementById("card-button");
+    const errorDiv = document.getElementById("card-errors");
+    const stripePidInput = document.getElementById("id_stripe_pid");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      cardButton.disabled = true;
+      cardButton.textContent = "Processing...";
+
+      stripe
+        .confirmCardPayment(clientSecret, {
+          payment_method: {
+            card: card,
+          },
+        })
+        .then(function (result) {
+          if (result.error) {
+            // Show error and re-enable button
+            errorDiv.textContent = result.error.message;
+            cardButton.disabled = false;
+            cardButton.textContent = "Pay R{{ total }}";
+          } else {
+            if (result.paymentIntent.status === "succeeded") {
+              // Fill hidden field with paymentIntent id and submit the form
+              stripePidInput.value = result.paymentIntent.id;
+              form.submit();
+            }
+          }
+        });
+    });
+  })();
+</script>
+{% endblock %}

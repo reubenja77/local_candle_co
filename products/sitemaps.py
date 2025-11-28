@@ -10,4 +10,4 @@ class ProductSitemap(Sitemap):
         return Product.objects.filter(is_active=True)
 
     def lastmod(self, obj):
-        return obj.created_at
+        return getattr(obj, "updated_at", None)

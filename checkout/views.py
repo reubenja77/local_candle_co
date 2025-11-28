@@ -11,7 +11,6 @@ from products.models import Product
 from .forms import CheckoutForm
 from .models import Order
 
-
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 CART_SESSION_KEY = 'cart'
@@ -19,29 +18,16 @@ CART_SESSION_KEY = 'cart'
 
 def _get_cart(request):
     """
-    Always return a clean cart dict from the session.
-
-    - Keys are product IDs as strings
-    - Values are integer quantities >= 1
+    Return the cart dictionary from the session.
+    Keys are product IDs (as strings), values are quantities (ints).
     """
-    # Get whatever is currently in the session (or an empty dict)
-    raw_cart = request.session.get(CART_SESSION_KEY, {})
-
-    clean_cart = {}
-    for pid, qty in raw_cart.items():
+    cart = request.session.setdefault(CART_SESSION_KEY, {})
+    for pid, qty in list(cart.items()):
         try:
-            qty_int = int(qty)
+            cart[pid] = int(qty)
         except (TypeError, ValueError):
-            qty_int = 1
-
-        if qty_int > 0:
-            clean_cart[str(pid)] = qty_int
-
-    # Write the cleaned cart back to the session
-    request.session[CART_SESSION_KEY] = clean_cart
-    request.session.modified = True
-
-    return clean_cart
+            cart[pid] = 1
+    return cart
 
 
 def cart_view(request):
@@ -69,7 +55,6 @@ def cart_add(request, product_id):
     product = get_object_or_404(Product, id=product_id, is_active=True)
     cart = _get_cart(request)
 
-    # Read quantity from POST, default to 1
     qty = 1
     if request.method == "POST":
         try:
@@ -124,44 +109,42 @@ def cart_remove(request, product_id):
     return redirect('checkout:cart')
 
 
-def checkout_view(request):
+def _calculate_cart_total(request):
     """
-    Simple checkout:
-    - Uses cart total
-    - Creates Stripe PaymentIntent
-    - Creates Order with status 'paid'
-    - Clears cart
+    Helper to calculate total from cart.
     """
     cart = _get_cart(request)
-    if not cart:
-        # No need for a flash message here; just send them back gracefully
-        return redirect('products:list')
-
-    # calculate total
     total = Decimal('0.00')
     for pid, qty in cart.items():
         product = get_object_or_404(Product, id=int(pid), is_active=True)
         total += Decimal(qty) * product.price
+    return total
+
+
+def checkout_view(request):
+    """
+    Checkout with Stripe Elements:
+
+    - GET: show checkout form + card input, create PaymentIntent and send client_secret
+    - POST: assume Stripe has already confirmed the PaymentIntent via JS,
+      create Order marked as paid, clear cart, send confirmation email.
+    """
+    cart = _get_cart(request)
+    if not cart:
+        messages.info(request, 'Your cart is empty.')
+        return redirect('products:list')
+
+    total = _calculate_cart_total(request)
 
     if request.method == 'POST':
         form = CheckoutForm(request.POST)
         if form.is_valid():
-            try:
-                # Create a PaymentIntent on Stripe (test keys)
-                intent = stripe.PaymentIntent.create(
-                    amount=int(total * 100),  # convert to cents
-                    currency=settings.STRIPE_CURRENCY,
-                    metadata={'integration_check': 'accept_a_payment'},
-                )
-            except stripe.error.StripeError:
-                messages.error(request, "There was a problem with the payment. Please try again.")
-                return redirect('checkout:error')
+            stripe_pid = request.POST.get('stripe_pid', '')
 
-                        # Create order marked as paid (simplified, no webhooks)
             order = form.save(commit=False)
             order.user = request.user if request.user.is_authenticated else None
             order.total_amount = total
-            order.stripe_pid = intent.id
+            order.stripe_pid = stripe_pid
             order.status = 'paid'
             order.save()
 
@@ -184,26 +167,33 @@ def checkout_view(request):
                     message,
                     settings.DEFAULT_FROM_EMAIL,
                     recipient_list,
-                    fail_silently=True,  # don't break checkout if email fails
+                    fail_silently=True,
                 )
             except Exception:
-                # Optional: log or show a non-blocking message later
                 pass
 
-            # clear cart
+            # Clear cart
             request.session[CART_SESSION_KEY] = {}
             request.session.modified = True
 
-            messages.success(request, 'Thanks! Your order has been received.')
+            messages.success(request, 'Thanks! Your payment was successful and your order has been received.')
             return redirect('checkout:success')
     else:
         form = CheckoutForm()
 
-    return render(request, 'checkout/checkout.html', {
+    # For GET and invalid POST, (re)create a PaymentIntent
+    intent = stripe.PaymentIntent.create(
+        amount=int(total * 100),  # cents
+        currency=settings.STRIPE_CURRENCY,
+    )
+
+    context = {
         'form': form,
         'total': total,
         'stripe_public_key': settings.STRIPE_PUBLIC_KEY,
-    })
+        'client_secret': intent.client_secret,
+    }
+    return render(request, 'checkout/checkout.html', context)
 
 
 def success(request):
