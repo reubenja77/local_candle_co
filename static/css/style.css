@@ -642,3 +642,24 @@ section h2 {
   max-width: 100%;
 }
 
+/* Footer */
+.lc-footer {
+  background: var(--lc-bg-alt);
+  border-top: 1px solid var(--lc-border);
+  margin-top: 4rem;
+}
+
+.lc-footer h5 {
+  color: var(--lc-text-main);
+}
+
+.footer-link {
+  color: var(--lc-primary);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  color: var(--lc-primary-dark);
+  text-decoration: underline;
+}
