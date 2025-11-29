@@ -134,20 +134,8 @@ All manual tests were completed using:
 - A confirmation email is printed in the terminal.
 
 ### Example console output:
-Subject: Your Local Candle Co order
-From: Local Candle Co <no-reply@localcandleco.test>
-To: test@example.com
 
-Hi Test User,
-
-Thank you for your order from Local Candle Co.
-Order ID: 12
-Total: R189.00
-
-We’re getting your candles ready and will email you when they ship.
-
-Warm regards,
-Local Candle Co
+![email console output](static/images/email-console-output.png)
 
 
 ### Pass / Fail
@@ -261,9 +249,90 @@ Validated via https://jigsaw.w3.org/css-validator/
 
 ### 6.3 Python (PEP8)
 
-Used `autopep8` and VS Code formatting  
-✔️ All files formatted  
-✔️ No major warnings
+Python code in this project was validated using **flake8** to ensure compliance with PEP8.
+
+### Tools Used
+
+- `flake8`
+
+Installed with:
+
+```
+pip install flake8
+```
+
+### How flake8 Was Run
+
+Validation was run from the project root directory using the following command:
+```
+flake8
+```
+flake8 checked the entire codebase (excluding migrations) for PEP8 compliance, including unused imports, line length, formatting, indentation, and file endings.
+
+### Issues Found & Fixes Applied
+
+During development, flake8 reported several issues.
+Below is a summary of the key findings and how they were resolved.
+
+![flake8 output before fixes](static/images/pep8-validation.png)
+
+F401 – Imported but unused
+
+These occurred in multiple files where imports existed but were not used:
+
+- accounts/admin.py
+
+- accounts/tests.py
+
+- checkout/tests.py
+
+- checkout/views.py (unused Order import)
+
+- marketing/tests.py
+
+- products/tests.py
+
+- products/views.py (unused login_required import)
+
+#### Fix: Removed all unused imports to clean up the codebase and follow PEP8 recommendations.
+
+### 501 – Line too long
+
+These typically appeared in:
+
+- checkout/views.py — long email message strings inside the checkout flow.
+
+Fix: Wrapped long strings using implicit line continuation inside parentheses to keep each line under 79 characters, as recommended by PEP8.
+
+### W292 – No newline at end of file
+
+Example:
+
+- checkout/views.py
+
+#### Fix: Added a newline at the end of the file to comply with PEP8 formatting rules.
+
+### Other Formatting Adjustments
+
+Minor spacing issues were also corrected, including:
+
+- Incorrect blank line spacing between functions
+
+- Extra spacing around imports
+
+- Minor whitespace issues
+
+#### Fix: Reformatted affected files to ensure consistent and clean PEP8-compliant layout.
+
+### Final Result
+
+After applying all changes, running:
+
+```
+flake8
+```
+
+returns no PEP8 violations for all application code (excluding Django migration files which are auto-generated).
 
 ---
 

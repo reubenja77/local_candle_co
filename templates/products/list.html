@@ -1,36 +1,40 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block page_title %}Shop{% endblock %}
 {% block meta_description %}
 Browse hand-poured scented candles from Local Candle Co. Small batch, delivered in South Africa.
 {% endblock %}
 
 {% block content %}
-  <!-- Hero section -->
-  <section class="hero-section mb-4">
-    <div class="row align-items-center">
-      <div class="col-md-7">
-        <h1 class="mb-2">Hand-poured scented candles</h1>
-        <p class="mb-0">Small batch. Delivered to your door.</p>
-      </div>
-      <div class="col-md-5 text-md-end mt-3 mt-md-0">
-        <a href="#shop" class="btn btn-primary me-2">Shop now</a>
-        <a href="{% url 'marketing:faq' %}" class="btn btn-outline-secondary">FAQ</a>
+  <section class="mb-4">
+    <div class="p-4 p-md-5 rounded-3 bg-white shadow-sm">
+      <div class="row align-items-center">
+        <div class="col-md-7">
+          <h1 class="mb-2">Hand-poured scented candles</h1>
+          <p class="mb-0">Small batch. Delivered to your door.</p>
+        </div>
+        <div class="col-md-5 text-md-end mt-3 mt-md-0">
+          <a href="#shop" class="btn btn-primary me-2">Shop now</a>
+          <a href="{% url 'marketing:faq' %}" class="btn btn-outline-secondary">FAQ</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Product grid -->
   <h2 id="shop" class="mb-3">Shop candles</h2>
 
   <div class="row row-cols-1 row-cols-md-3 g-3">
     {% for p in products %}
       <div class="col">
         <div class="card h-100">
-          <img
-            src="{{ p.image_url }}"
-            alt="{{ p.name }}"
-            class="card-img-top"
-          />
+          {% if p.image_path %}
+            <img
+              src="{% static 'images/products/'|add:p.image_path %}"
+              class="card-img-top"
+              alt="{{ p.name }}"
+            >
+          {% endif %}
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-center mb-2">
               <div>

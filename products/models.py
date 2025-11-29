@@ -9,6 +9,11 @@ class Product(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=8, decimal_places=2)
     image_url = models.URLField(blank=True)
+    image_path = models.CharField(
+        max_length=255,
+        blank=True,
+        help_text="Path under static/, e.g. 'images/products/cedarwood-glow.jpg'"
+    )
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 

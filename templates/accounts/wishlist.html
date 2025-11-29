@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block page_title %}Your Wishlist{% endblock %}
 {% block meta_description %}Your saved candles at Local Candle Co.{% endblock %}
 
@@ -10,25 +12,45 @@
       <p class="text-muted mb-4">Candles you’ve saved for later ✨</p>
 
       {% if items %}
-        <div class="d-flex flex-column gap-3">
+        <div class="wishlist-list">
           {% for item in items %}
-            <div class="wishlist-item text-center">
+            <div class="wishlist-item">
 
-              <!-- Product name -->
-              <p class="fw-semibold mb-3">{{ item.product.name }}</p>
+              <!-- Left side: thumbnail + name + price -->
+              <div class="wishlist-main">
+                {% if item.product.image_path %}
+                  <img
+                    src="{% static 'images/products/'|add:item.product.image_path %}"
+                    alt="{{ item.product.name }}"
+                    class="wishlist-thumb"
+                  />
+                {% elif item.product.image_url %}
+                  <img
+                    src="{{ item.product.image_url }}"
+                    alt="{{ item.product.name }}"
+                    class="wishlist-thumb"
+                  />
+                {% endif %}
 
-              <!-- Buttons stacked like logout -->
-              <div class="d-flex flex-column align-items-center gap-3">
+                <div class="wishlist-text">
+                  <p class="wishlist-name mb-1">{{ item.product.name }}</p>
+                  <p class="wishlist-price mb-0">R{{ item.product.price }}</p>
+                </div>
+              </div>
 
-                <!-- View button -->
-                <a href="{% url 'products:detail' item.product.slug %}"
-                   class="btn btn-outline-primary w-100">
+              <!-- Right side: actions -->
+              <div class="wishlist-actions">
+                <a
+                  href="{% url 'products:detail' item.product.slug %}"
+                  class="btn btn-outline-primary w-100"
+                >
                   View
                 </a>
 
-                <!-- Remove button -->
-                <a href="{% url 'accounts:wishlist_remove' item.product.id %}"
-                   class="btn btn-outline-danger w-100">
+                <a
+                  href="{% url 'accounts:wishlist_remove' item.product.id %}"
+                  class="btn btn-outline-danger w-100"
+                >
                   Remove
                 </a>
               </div>

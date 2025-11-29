@@ -129,7 +129,7 @@ if DATABASE_URL and DATABASE_URL.startswith(('postgres://', 'postgresql://')):
     DATABASES['default'] = dj_database_url.parse(
         DATABASE_URL,
         conn_max_age=600,
-        ssl_require=True,   # fine for Heroku/Postgres
+        ssl_require=True,   
     )
 
 
