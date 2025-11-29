@@ -1,12 +1,13 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from .models import Product, Review
 from .forms import ReviewForm
+
 
 def product_list(request):
     products = Product.objects.filter(is_active=True)
     return render(request, 'products/list.html', {'products': products})
+
 
 def product_detail(request, slug):
     product = get_object_or_404(Product, slug=slug, is_active=True)
@@ -26,6 +27,7 @@ def product_detail(request, slug):
             form = ReviewForm(instance=instance)
     reviews = product.reviews.all()
     return render(request, 'products/detail.html', {'product': product, 'reviews': reviews, 'form': form})
+
 
 def custom_404(request, exception): return render(request, '404.html', status=404)
 def custom_500(request): return render(request, '500.html', status=500)
