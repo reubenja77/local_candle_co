@@ -6,6 +6,8 @@ Hand-poured scented candles. Small batch. Delivered.
 Local Candle Co is a fully functional e-commerce application built using Django, featuring product browsing, cart management, checkout and payment processing using Stripe, user authentication with Django-Allauth, wishlist functionality, newsletter signup, FAQ management, and a contact system.
 
 This project is my Portfolio Project for the E-Commerce Applications module. It demonstrates a full-stack cloud-hosted online store with marketing tools, SEO, UX design, and secure authentication.
+💻 [Visit live website](https://local-candle-co-8ac3df963878.herokuapp.com/)  
+(Ctrl + click to open in new tab)
 
 ## 2. Business Model
 
@@ -77,16 +79,21 @@ Users create accounts to:
 
 ### 3.4 Wireframes
 > - Home / Product list  
-![home](static/images/kanban-01.png)
+![home](static/images/home-page.png)
 > - Product detail
-![product](static/images/kanban-01.png)  
+![product](static/images/product.png)  
 > - Cart
-![cart](static/images/kanban-01.png)  
+![cart](static/images/cart.png)  
 > - Checkout
-![chekout](static/images/kanban-01.png)  
+![chekout](static/images/checkout.png)  
 > - Wishlist
-![wishlist](static/images/kanban-01.png)  
-REMEMBER: Add: Desktop + Mobile wireframes for Home, Product Detail, Cart, Checkout, Wishlist
+![wishlist](static/images/wishlist.png)
+> - Contact Us
+![contact](static/images/contact-us.png)
+> - Newsletter
+![suscribe](static/images/subscribe.png)
+> - Footer
+![footer](static/images/footer.png)
 
 ### 3.5 Entity Relationship Diagram (ERD)
 ![ERD diagram](static/images/wireframe-erd.png)
@@ -166,8 +173,19 @@ The testing document includes:
 
 
 ## 8. Deployment
-Heroku Deployment Steps
-REMEMBER: Add steps here
+[Official Page](https://devcenter.heroku.com/articles/git) (Ctrl + click)
+### Heroku Deployment Steps:
+1. Create a new Heroku app.
+
+2. Set `DATABASE_URL`, `SECRET_KEY`, `STRIPE_PUBLIC_KEY`, `STRIPE_SECRET_KEY`, etc. in Heroku Config Vars.
+
+3. Connect the app to the GitHub repository.
+
+4. Set buildpacks (e.g. `heroku/python`).
+
+5. Deploy the `main` branch and run migrations.
+
+6. Confirm that the deployed site matches the local development version.
 
 ## 9. Credits
 RMEMBER: Add referrences here
