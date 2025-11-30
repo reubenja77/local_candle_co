@@ -593,7 +593,7 @@ section h2 {
 
 /* Mobile: hide thumbnails only in the cart table, not wishlist */
 @media (max-width: 576px) {
-  .cart-table-wrap .cart-thumb {
+  .cart-table-wrap table .cart-thumb {
     display: none;
   }
 }

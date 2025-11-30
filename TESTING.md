@@ -320,9 +320,9 @@ No JS validation was required.
 
 I've also tested my deployed project on WAVE Web Accessibility Evaluation Tool to check for any issues.
 
-| Browser | Summary | Details | Structure | Contrast | Homepage | Notes |
+| Browser | Details | Reference | Order | Structure | Contrast | Notes |
 | --- | --- | --- | --- | --- | --- | --- |
-| Chrome | ![screenshot](static/images/wave-home-summary-page.webp) | ![screenshot](static/images/wave-home-details-page.webp) | ![screenshot](static/images/wave-home-structure-page.webp) | ![screenshot](static/images/wave-home-contrast-page.webp) | ![screenshot](static/images/wave-home-landing-page.webp) | Pass: No Errors |
+| Chrome | ![screenshot](static/images/wave-details.png) | ![screenshot](static/images/wave-reference.png) | ![screenshot](static/images/wave-order.png) | ![screenshot](static/images/wave-structure.png) | ![screenshot](static/images/wave-contrast.png) | Pass: No Errors |
 |
 
 ---
