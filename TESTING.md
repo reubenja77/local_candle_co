@@ -265,13 +265,11 @@ The HTML for all main pages was validated using the [HTML W3C Validator](https:/
 
 ### 6.2 CSS
 
-Validated via https://jigsaw.w3.org/css-validator/  
-
 I have used the recommended [CSS Jigsaw Validator](https://jigsaw.w3.org/css-validator) to validate all of my CSS files.
 
 | File | screenshot | Notes |                                                                                                 |
 | --- | --- | --- | ----------------------------------------------------------------------------------------------------------|
-| style.css  | ![screenshot](static/images/css-validation.webp) |  Pass: No Errors |
+| style.css  | ![screenshot](static/images/css-validation.png) |  Pass: No Errors |
 
 ### 6.3 Python (PEP8)
 
