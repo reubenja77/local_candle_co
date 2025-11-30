@@ -6,6 +6,9 @@ Hand-poured scented candles. Small batch. Delivered.
 Local Candle Co is a fully functional e-commerce application built using Django, featuring product browsing, cart management, checkout and payment processing using Stripe, user authentication with Django-Allauth, wishlist functionality, newsletter signup, FAQ management, and a contact system.
 
 This project is my Portfolio Project for the E-Commerce Applications module. It demonstrates a full-stack cloud-hosted online store with marketing tools, SEO, UX design, and secure authentication.
+
+![Responsiveness](static/images/ami-response.png) 
+
 💻 [Visit live website](https://local-candle-co-8ac3df963878.herokuapp.com/)  
 (Ctrl + click to open in new tab)
 
@@ -78,22 +81,16 @@ Users create accounts to:
 ![kanban board](static/images/kanban-02.png)
 
 ### 3.4 Wireframes
-> - Home / Product list  
-![home](static/images/home-page.png)
-> - Product detail
-![product](static/images/product.png)  
-> - Cart
-![cart](static/images/cart.png)  
-> - Checkout
-![chekout](static/images/checkout.png)  
-> - Wishlist
-![wishlist](static/images/wishlist.png)
-> - Contact Us
-![contact](static/images/contact-us.png)
-> - Newsletter
-![suscribe](static/images/subscribe.png)
-> - Footer
-![footer](static/images/footer.png)
+####  Home / Product list  
+![home](static/images/landing-wireframe.jpg)
+####  Product detail
+![product](static/images/product-details-wireframe.jpg)  
+#### Cart
+![cart](static/images/cart-wireframe.jpg)  
+####  Checkout
+![chekout](static/images/checkout-wireframe.jpg)  
+####  Contact Us
+![contact](static/images/contact-wireframe.jpg)
 
 ### 3.5 Entity Relationship Diagram (ERD)
 ![ERD diagram](static/images/wireframe-erd.png)
@@ -188,7 +185,68 @@ The testing document includes:
 6. Confirm that the deployed site matches the local development version.
 
 ## 9. Credits
-RMEMBER: Add referrences here
-Product photos: Unsplash/Pexels placeholders
-Inspiration from Boutique Ado project
+### Reference Material & Learning Resources
+
+The following websites were used throughout development for guidance,
+documentation, and best practices:
+
+- **Django Documentation**  
+  https://docs.djangoproject.com/  
+  Official documentation used for models, forms, admin, URL routing,
+  static files, and deployment settings.
+
+- **Stripe Documentation**  
+  https://stripe.com/docs  
+  Used for implementing PaymentIntent, client secret handling,
+  and understanding the checkout flow.
+
+- **Bootstrap 5 Documentation**  
+  https://getbootstrap.com/docs/5.0/getting-started/introduction/  
+  For layout grids, utilities, spacing, and responsive components.
+
+- **W3Schools**  
+  https://www.w3schools.com/  
+  General HTML, CSS, and JavaScript references.
+
+- **MDN Web Docs (Mozilla Developer Network)**  
+  https://developer.mozilla.org/  
+  For CSS behaviour, accessibility, ARIA attributes, and semantic HTML.
+
+- **Code Institute Course Material**  
+  Django and Stripe lessons from the *Boutique Ado* walkthrough provided structural guidance, best practices,
+  and deployment patterns.
+
+- **Django-Allauth Documentation**  
+  https://django-allauth.readthedocs.io/  
+  For login, logout, registration, email fields, and templates.
+
+- **Code Institute**  
+  Code structure inspired by Boutique Ado walkthrough project
+
+### Media
+#### Product images:
+- **Unsplash**  
+  https://unsplash.com/  
+  Source of product placeholder photos (free commercial use license).
+
+- **Pexels**  
+  https://pexels.com/  
+  Additional product images under a free license.
+
+#### Icons:
+- Font Awesome
+- Emoji symbols (unicode)
+
+#### Tools:
+- **dbdiagram.io**  
+  https://dbdiagram.io  
+  Used to create the Entity Relationship Diagram (ERD).
+
+- **uizard.io**  
+  https://app.uizard.io  
+  Used to create wireframes.
+
+
+#### Acknowledgements:
+Thanks goes to my mentor, Rory Sheridan, for his motivating words of encouragement, advice and guidance through not only this project but also the other 4 milestone projects.
 

@@ -41,6 +41,7 @@ All manual tests were completed using:
 ---
 
 ## 1.2 Product List Page
+![products](static/images/product-list.png)
  
 | Test | Result |
 |------|--------|
@@ -52,6 +53,7 @@ All manual tests were completed using:
 ---
 
 ## 1.3 Product Detail Page
+![product](static/images/product.png)
 
 | Test | Result |
 |------|--------|
@@ -63,6 +65,7 @@ All manual tests were completed using:
 ---
 
 ## 1.4 Wishlist
+![wishlist](static/images/wishlist.png)
 
 | Test | Result |
 |------|--------|
@@ -74,6 +77,7 @@ All manual tests were completed using:
 ---
 
 ## 1.5 Cart & Quantity Updates
+![cart](static/images/cart.png)
 
 | Test | Result |
 |------|--------|
@@ -87,6 +91,7 @@ All manual tests were completed using:
 ---
 
 ## 1.6 Checkout
+![checkout](static/images/checkout.png)
 
 | Test | Result |
 |------|--------|
@@ -278,6 +283,14 @@ flake8
 ```
 flake8 checked the entire codebase (excluding migrations) for PEP8 compliance, including unused imports, line length, formatting, indentation, and file endings.
 
+### JavaScript Validation
+
+This project does not include any custom JavaScript files.
+All dynamic behaviour comes from Bootstrap’s JS, which is loaded via CDN and therefore not part of the repository.
+No JS validation was required.
+
+---
+
 ### WAVE Web Accessibility Evaluation Tool
 
 I've also tested my deployed project on WAVE Web Accessibility Evaluation Tool to check for any issues.
@@ -294,9 +307,9 @@ I've tested my deployed project on multiple browsers to check for compatibility 
 
 | Browser | Home | Notes |  |
 | --- | --- | --- | --- | 
-| Chrome | ![screenshot](static/images/chrome-home-page.webp) | Works as expected |
-| Firefox | ![screenshot](static/images/firefox-home-page.webp) | Works as expected |
-| Safari | ![screenshot](static/images/safari-home-page.webp) | Works as expected |
+| Chrome | ![screenshot](static/images/chrome-home-page.webp) | ✔️ PASS |
+| Firefox | ![screenshot](static/images/firefox-home-page.webp) | ✔️ PASS |
+| Safari | ![screenshot](static/images/safari-home-page.webp) | ✔️ PASS |
 
 ## Lighthouse Audit
 
@@ -304,12 +317,11 @@ I've tested my deployed project using the Lighthouse Audit tool to check for any
 
 | Page | Mobile | Desktop | Notes |
 | --- | --- | --- | --- | 
-| Home | ![screenshot](static/images/lighthouse-landing-mobile.webp) | ![screenshot](static/images/lighthouse-landing-desktop.webp) | Warnings: 
+| Home | ![screenshot](static/images/lighthouse-mobile-validation.png) | ![screenshot](static/images/lighthouse-desktop-validation.png) | Warnings: 
 Uses deprecated APIs 1 warning found. |
-| Signup | ![screenshot](static/images/lighthouse-signup-mobile.webp) | ![screenshot](static/images/lighthouse-signup-desktop.webp) | Largest Contentful Paint element 6,260 ms. |
-| Login | ![screenshot](static/images/lighthouse-login-mobile.webp) | ![screenshot](static/images/lighthouse-login-desktop.webp) | Largest Contentful Paint element 6,490 ms. |
-| My Books | ![screenshot](static/images/lighthouse-my-books-mobile.webp) | ![screenshot](static/images/lighthouse-my-books-desktop.webp) | Preconnect to required origins Est savings of 280 ms. |
-| Add Books | ![screenshot](static/images/lighthouse-add-book-mobile.webp) | ![screenshot](static/images/lighthouse-add-book-desktop.webp) | Preconnect to required origins Est savings of 350 ms. |
+| Login | ![screenshot](static/images/lighthouse-mobile-login-validation.png) | ![screenshot](static/images/lighthouse-login-desktop.webp) | Largest Contentful Paint element 6,490 ms. |
+| My Cart | ![screenshot](static/images/lighthouse-mobile-cart-validation.png) | ![screenshot](static/images/lighthouse-desktop-cart-validation.png) | Preconnect to required origins Est savings of 280 ms. |
+| Checkout | ![screenshot](static/images/lighthouse-mobile-checkout-validation.png) | ![screenshot](static/images/lighthouse-desktop-checkout-validation.png) | Preconnect to required origins Est savings of 350 ms. |
 
 ## Responsiveness
 
@@ -317,9 +329,9 @@ I've tested my deployed project for responsiveness issues.
 
 | Device | Home | Notes |  |
 | --- | --- | --- | --- | 
-| Mobile (DevTools) | ![screenshot](static/images/mobile.webp) | Works as expected | 
-| Tablet (DevTools) | ![screenshot](static/images/tablet.webp) | Works as expected |
-| Desktop (DevTools) | ![screenshot](static/images/laptop.webp) | Works as expected |
+| Mobile (DevTools) | ![mobile](static/images/mobile-home.png) | ✔️ PASS | 
+| Tablet (DevTools) | ![tablet](static/images/tablet.png) | ✔️ PASS |
+| Desktop (DevTools) | ![screenshot](static/images/chrome-testing.png) | ✔️ PASS |
 
 ## Issues Found & Fixes Applied
 
@@ -388,14 +400,16 @@ returns no PEP8 violations for all application code (excluding Django migration 
 
 ---
 
+![screenshot](static/images/firefox-testing.webp)
+
 ## 7. Browser & Device Testing
 
 | Device/Browser | Home | Result |
 |----------------|--------|--------|
-| Chrome Desktop | ![screenshot](/static/images/chrome-testing.webp)  | ✔️ PASS |
-| Firefox | ![screenshot](/static/images/firefox-testing.webp)  | ✔️ PASS |
-| Safari | ![screenshot](/static/images/safari-testing.webp)  | ✔️ PASS |
-| iPhone | ![screenshot](/static/images/mobile-home.webp)  | ✔️ PASS |
+| Chrome Desktop | ![screenshot](static/images/chrome-testing.png)  | ✔️ PASS |
+| Firefox | ![screenshot](static/images/firefox-testing.png) | ✔️ PASS |
+| Safari | ![screenshot](static/images/safari-testing.png) | ✔️ PASS |
+| iPhone | ![screenshot](static/images/mobile-home.png) | ✔️ PASS |
 
 ---
 
