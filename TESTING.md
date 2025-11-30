@@ -1,5 +1,8 @@
 # TESTING
 
+> [!NOTE]  
+> Return back to the [README.md](README.md) file.
+
 This document covers all testing completed for **Local Candle Co**, including:
 
 - Manual feature testing  
@@ -28,7 +31,7 @@ All manual tests were completed using:
 
 ---
 
-## 1.1 Navigation Bar
+### 1.1 Navigation Bar
 ![navbar](static/images/navbar.png)
 ![mobile](static/images/mobile-nav.png)
 
@@ -42,7 +45,7 @@ All manual tests were completed using:
 
 ---
 
-## 1.2 Product List Page
+### 1.2 Product List Page
 ![products](static/images/product-list.png)
  
 | Test | Result |
@@ -54,7 +57,7 @@ All manual tests were completed using:
 
 ---
 
-## 1.3 Product Detail Page
+### 1.3 Product Detail Page
 ![product](static/images/product.png)
 
 | Test | Result |
@@ -66,7 +69,7 @@ All manual tests were completed using:
 
 ---
 
-## 1.4 Wishlist
+### 1.4 Wishlist
 ![wishlist](static/images/wishlist.png)
 
 | Test | Result |
@@ -78,7 +81,7 @@ All manual tests were completed using:
 
 ---
 
-## 1.5 Cart & Quantity Updates
+### 1.5 Cart & Quantity Updates
 ![cart](static/images/cart.png)
 
 | Test | Result |
@@ -92,7 +95,7 @@ All manual tests were completed using:
 
 ---
 
-## 1.6 Checkout
+### 1.6 Checkout
 ![checkout](static/images/checkout.png)
 
 | Test | Result |
@@ -105,9 +108,8 @@ All manual tests were completed using:
 
 ---
 
-## 1.7 Order Confirmation Email
+### 1.7 Order Confirmation Email
 
-### Steps
 | Test Area         | Description                                                        |
 | ----------------- | ------------------------------------------------------------------ |
 | **Feature**       | Order confirmation email                                           |
@@ -145,7 +147,6 @@ All manual tests were completed using:
 
 ![email console output](static/images/email-console-output.png)
 
-
 ### Pass / Fail
 
 | Test | Result |
@@ -157,7 +158,7 @@ All manual tests were completed using:
 
 ---
 
-## 1.8 FAQ CRUD Management (Admin Only)
+## 1. FAQ CRUD Management (Admin Only)
 
 #### FAQ Management (CRUD)
 
@@ -308,7 +309,7 @@ flake8
 ```
 flake8 checked the entire codebase (excluding migrations) for PEP8 compliance, including unused imports, line length, formatting, indentation, and file endings.
 
-### JavaScript Validation
+## 7. JavaScript Validation
 
 This project does not include any custom JavaScript files.
 All dynamic behaviour comes from Bootstrap’s JS, which is loaded via CDN and therefore not part of the repository.
@@ -316,7 +317,7 @@ No JS validation was required.
 
 ---
 
-### WAVE Web Accessibility Evaluation Tool
+## 8. WAVE Web Accessibility Evaluation Tool
 
 I've also tested my deployed project on WAVE Web Accessibility Evaluation Tool to check for any issues.
 
@@ -327,19 +328,20 @@ I've also tested my deployed project on WAVE Web Accessibility Evaluation Tool t
 
 ---
 
-## Lighthouse Audit
+## 9. Lighthouse Audit
 
 I've tested my deployed project using the Lighthouse Audit tool to check for any major issues.
 
 | Page | Mobile | Desktop | Notes |
 | --- | --- | --- | --- | 
-| Home | ![screenshot](static/images/lighthouse-mobile-validation.png) | ![screenshot](static/images/lighthouse-desktop-validation.png) | Warnings: 
-Uses deprecated APIs 1 warning found. |
-| Login | ![screenshot](static/images/lighthouse-mobile-login-validation.png) | ![screenshot](static/images/lighthouse-login-desktop.webp) | Largest Contentful Paint element 6,490 ms. |
-| My Cart | ![screenshot](static/images/lighthouse-mobile-cart-validation.png) | ![screenshot](static/images/lighthouse-desktop-cart-validation.png) | Preconnect to required origins Est savings of 280 ms. |
-| Checkout | ![screenshot](static/images/lighthouse-mobile-checkout-validation.png) | ![screenshot](static/images/lighthouse-desktop-checkout-validation.png) | Preconnect to required origins Est savings of 350 ms. |
+| Home | ![screenshot](static/images/lighthouse-mobile-validation.png) | ![screenshot](static/images/lighthouse-desktop-validation.png) | Warnings relate only to external CDNs and do not affect site functionality. |
+| Login | ![screenshot](static/images/lighthouse-mobile-login-validation.png) | ![screenshot](static/images/lighthouse-desktop-login-validation.png) | The page loads fast, follows accessibility standards, and meets all modern best-practice and search-optimisation requirements. |
+| My Cart | ![screenshot](static/images/lighthouse-mobile-cart-validation.png) | ![screenshot](static/images/lighthouse-desktop-cart-validation.png) | Test shows strong overall optimisation with a remaining accessibility improvement needed on contrast and form labelling. |
+| Checkout | ![screenshot](static/images/lighthouse-mobile-checkout-validation.png) | ![screenshot](static/images/lighthouse-desktop-checkout-validation.png) | Small improvements required in accessibility and best-practice compliance. |
 
-## Responsiveness
+---
+
+## 10. Responsiveness
 
 I've tested my deployed project for responsiveness issues.
 
@@ -356,7 +358,7 @@ Below is a summary of the key findings and how they were resolved.
 
 ![flake8 output before fixes](static/images/pep8-validation.png)
 
-F401 – Imported but unused
+#### F401 – Imported but unused
 
 These occurred in multiple files where imports existed but were not used:
 
@@ -374,15 +376,15 @@ These occurred in multiple files where imports existed but were not used:
 
 - `products/views.py` (unused login_required import)
 
-#### Fix: Removed all unused imports to clean up the codebase and follow PEP8 recommendations.
+**Fix:** Removed all unused imports to clean up the codebase and follow PEP8 recommendations.
 
-### 501 – Line too long
+#### 501 – Line too long
 
 These typically appeared in:
 
 - checkout/views.py — long email message strings inside the checkout flow.
 
-Fix: Wrapped long strings using implicit line continuation inside parentheses to keep each line under 79 characters, as recommended by PEP8.
+**Fix:** Wrapped long strings using implicit line continuation inside parentheses to keep each line under 79 characters, as recommended by PEP8.
 
 ### W292 – No newline at end of file
 
@@ -390,7 +392,7 @@ Example:
 
 - checkout/views.py
 
-#### Fix: Added a newline at the end of the file to comply with PEP8 formatting rules.
+**Fix:** Added a newline at the end of the file to comply with PEP8 formatting rules.
 
 ### Other Formatting Adjustments
 
@@ -402,9 +404,9 @@ Minor spacing issues were also corrected, including:
 
 - Minor whitespace issues
 
-#### Fix: Reformatted affected files to ensure consistent and clean PEP8-compliant layout.
+**Fix:** Reformatted affected files to ensure consistent and clean PEP8-compliant layout.
 
-### Final Result
+## Final Result
 
 After applying all changes, running:
 
@@ -416,9 +418,7 @@ returns no PEP8 violations for all application code (excluding Django migration 
 
 ---
 
-![screenshot](static/images/firefox-testing.webp)
-
-## 7. Browser & Device Testing
+## 11. Browser & Device Testing
 
 | Device/Browser | Home | Result |
 |----------------|--------|--------|
@@ -429,7 +429,7 @@ returns no PEP8 violations for all application code (excluding Django migration 
 
 ---
 
-## 8. Known Bugs & Fixes
+## 12. Known Bugs & Fixes
 
 ### Fixed
 - Navbar not collapsing on mobile → replaced with dropdown burger
