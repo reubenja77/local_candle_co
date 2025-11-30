@@ -390,13 +390,12 @@ returns no PEP8 violations for all application code (excluding Django migration 
 
 ## 7. Browser & Device Testing
 
-| Device/Browser | Result |
-|----------------|--------|
-| Chrome Desktop | ✔️ PASS |
-| Chrome Mobile Simulator | ✔️ PASS |
-| Firefox | ✔️ PASS |
-| Safari/iPhone | ✔️ PASS |
-| Edge | ✔️ PASS |
+| Device/Browser | Home | Result |
+|----------------|--------|--------|
+| Chrome Desktop | ![screenshot](/static/images/chrome-testing.webp)  | ✔️ PASS |
+| Firefox | ![screenshot](/static/images/firefox-testing.webp)  | ✔️ PASS |
+| Safari | ![screenshot](/static/images/safari-testing.webp)  | ✔️ PASS |
+| iPhone | ![screenshot](/static/images/mobile-home.webp)  | ✔️ PASS |
 
 ---
 
