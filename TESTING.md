@@ -158,7 +158,7 @@ All manual tests were completed using:
 
 ---
 
-## 1. FAQ CRUD Management (Admin Only)
+## 2. FAQ CRUD Management (Admin Only)
 
 #### FAQ Management (CRUD)
 
@@ -196,7 +196,7 @@ All manual tests were completed using:
 
 ---
 
-## 2. User Story Testing
+## 3. User Story Testing
 
 | User Story | Result |
 |------------|--------|
@@ -211,7 +211,7 @@ All manual tests were completed using:
 
 ---
 
-## 3. Form Validation
+## 4. Form Validation
 
 | Form | Behaviour | Result |
 |-------|-------------|---------|
@@ -222,7 +222,7 @@ All manual tests were completed using:
 
 ---
 
-## 4. Authentication & Authorization
+## 5. Authentication & Authorization
 
 | Test | Result |
 |------|--------|
@@ -233,7 +233,7 @@ All manual tests were completed using:
 
 ---
 
-## 5. Error Page Testing (404 & 500)
+## 6. Error Page Testing (404 & 500)
 
 Custom error pages (`404.html` and `500.html`) were implemented to ensure a clear, branded user experience in cases of broken links or server errors.
 
@@ -256,9 +256,9 @@ Both pages displayed correctly on Heroku with `DEBUG=False`, confirming that pro
 
 ---
 
-## 6. Validator Testing
+## 7. Validator Testing
 
-### 6.1 HTML
+### 7.1 HTML
 
 The HTML for all main pages was validated using the [HTML W3C Validator](https://validator.w3.org) to validate all of my HTML files.
 
@@ -279,7 +279,7 @@ The HTML for all main pages was validated using the [HTML W3C Validator](https:/
 | 500 error.html | ![screenshot](static/images/500-validation-html.png) | Pass: No Errors |
 **NB:** No errors or warnings were found in the final validated output. A few informational notes regarding HTML5 “void elements” (e.g., trailing slashes on <meta> and <link> tags) were shown, but these do not affect validity.
 
-### 6.2 CSS
+### 7.2 CSS
 
 I have used the recommended [CSS Jigsaw Validator](https://jigsaw.w3.org/css-validator) to validate all of my CSS files.
 
@@ -287,7 +287,7 @@ I have used the recommended [CSS Jigsaw Validator](https://jigsaw.w3.org/css-val
 | --- | --- | --- | ----------------------------------------------------------------------------------------------------------|
 | style.css  | ![screenshot](static/images/css-validation.png) |  Pass: No Errors |
 
-### 6.3 Python (PEP8)
+### 7.3 Python (PEP8)
 
 Python code in this project was validated using **flake8** to ensure compliance with PEP8.
 
@@ -309,7 +309,7 @@ flake8
 ```
 flake8 checked the entire codebase (excluding migrations) for PEP8 compliance, including unused imports, line length, formatting, indentation, and file endings.
 
-## 7. JavaScript Validation
+## 8. JavaScript Validation
 
 This project does not include any custom JavaScript files.
 All dynamic behaviour comes from Bootstrap’s JS, which is loaded via CDN and therefore not part of the repository.
@@ -317,7 +317,7 @@ No JS validation was required.
 
 ---
 
-## 8. WAVE Web Accessibility Evaluation Tool
+## 9. WAVE Web Accessibility Evaluation Tool
 
 I've also tested my deployed project on WAVE Web Accessibility Evaluation Tool to check for any issues.
 
@@ -328,7 +328,7 @@ I've also tested my deployed project on WAVE Web Accessibility Evaluation Tool t
 
 ---
 
-## 9. Lighthouse Audit
+## 10. Lighthouse Audit
 
 I've tested my deployed project using the Lighthouse Audit tool to check for any major issues.
 
@@ -341,7 +341,7 @@ I've tested my deployed project using the Lighthouse Audit tool to check for any
 
 ---
 
-## 10. Responsiveness
+## 11. Responsiveness
 
 I've tested my deployed project for responsiveness issues.
 
@@ -418,7 +418,7 @@ returns no PEP8 violations for all application code (excluding Django migration 
 
 ---
 
-## 11. Browser & Device Testing
+## 12. Browser & Device Testing
 
 | Device/Browser | Home | Result |
 |----------------|--------|--------|
@@ -429,7 +429,7 @@ returns no PEP8 violations for all application code (excluding Django migration 
 
 ---
 
-## 12. Known Bugs & Fixes
+## 13. Known Bugs & Fixes
 
 ### Fixed
 - Navbar not collapsing on mobile → replaced with dropdown burger
