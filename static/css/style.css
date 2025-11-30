@@ -663,3 +663,30 @@ section h2 {
   color: var(--lc-primary-dark);
   text-decoration: underline;
 }
+
+/* ----------------------------------------
+   Navbar button polish
+   ---------------------------------------- */
+
+.navbar .btn-primary,
+.navbar .btn-success,
+.navbar .btn-outline-primary {
+  color: #fff !important;
+}
+
+.navbar .btn-primary:hover,
+.navbar .btn-success:hover {
+  color: #fff !important;
+}
+
+/* Outline buttons on navbar */
+.navbar .btn-outline-primary {
+  background-color: var(--lc-primary);
+  border-color: var(--lc-primary);
+}
+
+.navbar .btn-outline-primary:hover {
+  background-color: var(--lc-primary-dark);
+  border-color: var(--lc-primary-dark);
+  color: #fff !important;
+}

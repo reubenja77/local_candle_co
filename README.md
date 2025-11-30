@@ -11,35 +11,35 @@ This project is my Portfolio Project for the E-Commerce Applications module. It 
 
 Local Candle Co follows a straightforward e-commerce business model, focusing on single-purchase retail through a product catalogue.
 
-### Business Type
+### 2.1 Business Type
 
 B2C (Business to Consumer) retail of scented candles.
 
-### Revenue Model
+### 2.2 Revenue Model
 - Direct product sales through a checkout system powered by Stripe.
 - No subscriptions or recurring payments.
 - Newsletter allows for future promotions and product launches.
 
-### Customer Segment
+### 2.3 Customer Segment
 - Home décor enthusiasts
 - Gift buyers
 - Candle lovers who prefer artisanal, hand-poured products
 - Customers seeking locally sourced candles
 
-### Value Proposition
+### 2.4 Value Proposition
 - Hand-crafted, small-batch candles
 - Simple, fast checkout
 - Quality scents
 - Fast delivery
 - Easy communication through built-in contact form
 
-### Customer Acquisition
+### 2.5 Customer Acquisition
 - SEO
 - Newsletter signups
 - Facebook business page mockup (marketing presence)
 - Clean UX design that reduces friction in browsing and purchasing
 
-### Reason for Authentication
+### 2.6 Reason for Authentication
 Users create accounts to:
 - Save wishlist items
 - View order details in email
@@ -72,13 +72,24 @@ Users create accounts to:
 - Contact the store
 - View FAQs
 
-REMEMBER: Add screenshot of Kanban board
+![kanban board](static/images/kanban-01.png)
+![kanban board](static/images/kanban-02.png)
 
 ### 3.4 Wireframes
+> - Home / Product list  
+![home](static/images/kanban-01.png)
+> - Product detail
+![product](static/images/kanban-01.png)  
+> - Cart
+![cart](static/images/kanban-01.png)  
+> - Checkout
+![chekout](static/images/kanban-01.png)  
+> - Wishlist
+![wishlist](static/images/kanban-01.png)  
 REMEMBER: Add: Desktop + Mobile wireframes for Home, Product Detail, Cart, Checkout, Wishlist
 
 ### 3.5 Entity Relationship Diagram (ERD)
-REMEMBER: Add screenshot of dbdiagram.io here
+![ERD diagram](static/images/wireframe-erd.png)
 
 ### 3.6 Design Choices
 REMEMBER: Elaborate on below section
@@ -101,6 +112,7 @@ REMEMBER: Elaborate on below section
 - Admin management for products, reviews, FAQs, contacts, orders
 - SEO (meta tags, robots.txt, sitemap.xml)
 - Custom error pages (404, 500)
+- Mock Facebook business page link in footer 
 
 ### Future Features
 - Product reviews
@@ -109,30 +121,29 @@ REMEMBER: Elaborate on below section
 - Product categories
 
 ## 5. Technologies Used
-### Backend:
+### 5.1 Backend:
 - Python
 - Django
-- Django Allauth
+- Django Allauth (authentication)
 - Django Sitemaps
 
-### Frontend
+### 5.2 Frontend
 - Bootstrap 5
 - HTML5, 
 - CSS3
-- Cloudinary (optional for images)
 
-### Payments
+### 5.3 Payments
 - Stripe PaymentIntent API
 
-### Hosting
+### 5.4 Hosting
 - Heroku
 - Gunicorn
 - Whitenoise / Cloudinary Storage
 
 ## 6. SEO Implementation
 - Meta description tags on key pages
-- robots.txt
-- sitemap.xml
+- `robots.txt`
+- `sitemap.xml`
 - Friendly URLs
 - Human-readable page titles
 - Internal linking via navbar and footer
@@ -162,3 +173,4 @@ REMEMBER: Add steps here
 RMEMBER: Add referrences here
 Product photos: Unsplash/Pexels placeholders
 Inspiration from Boutique Ado project
+
