@@ -1,17 +1,47 @@
 {% extends "base.html" %}
 {% load i18n %}
+
 {% block page_title %}Sign up{% endblock %}
-{% block meta_description %}Create a Local Candle Co account to save your wishlist and checkout faster.{% endblock %}
+{% block meta_description %}
+Create a Local Candle Co account to save your wishlist and checkout faster.
+{% endblock %}
 
 {% block content %}
   <div class="section-center">
     <div class="hero-section">
       <h1 class="mb-3">Create your account</h1>
-      <p class="mb-4 text-muted">Set up a free account to save favourites and manage your orders.</p>
+      <p class="mb-4 text-muted">
+        Set up a free account to save favourites and manage your orders.
+      </p>
 
       <form method="post" action="{% url 'account_signup' %}">
         {% csrf_token %}
-        {{ form.as_p }}
+
+        <p>
+          <label for="{{ form.email.id_for_label }}">Email:</label>
+          {{ form.email }}
+        </p>
+
+        <p>
+          <label for="{{ form.username.id_for_label }}">Username:</label>
+          {{ form.username }}
+        </p>
+
+        <p>
+          <label for="{{ form.password1.id_for_label }}">Password:</label>
+          {{ form.password1 }}
+        </p>
+        {% if form.password1.help_text %}
+          <div class="form-text small">
+            {{ form.password1.help_text|safe }}
+          </div>
+        {% endif %}
+
+        <p>
+          <label for="{{ form.password2.id_for_label }}">Password (again):</label>
+          {{ form.password2 }}
+        </p>
+
         <button class="btn btn-primary mt-2" type="submit">
           Sign up
         </button>

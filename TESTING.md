@@ -245,11 +245,33 @@ All manual tests were completed using:
 
 ### 6.1 HTML
 
-I have used the recommended [HTML W3C Validator](https://validator.w3.org) to validate all of my HTML files.
+The HTML for all main pages was validated using the [HTML W3C Validator](https://validator.w3.org) to validate all of my HTML files.
 
 | File | screenshot | Notes |                                                                                                 |
 | --- | --- | --- | ----------------------------------------------------------------------------------------------------------|
-| https://booknooks-project-app-5c3a20ad5555.herokuapp.com/ | ![screenshot](static/images/w3-validation.webp) | Pass: No Errors |
+| base.html | ![screenshot](static/images/login-validation-html.png) | Pass: No Errors |
+| details.html | ![screenshot](static/images/login-validation-html.png) | Pass: No Errors |
+| list.html | ![screenshot](static/images/login-validation-html.png) | Pass: No Errors |
+| login.html | ![screenshot](static/images/login-validation-html.png) | Pass: No Errors |
+| details.html | ![screenshot](static/images/login-validation-html.png) | Pass: No Errors |
+| details.html | ![screenshot](static/images/login-validation-html.png) | Pass: No Errors |
+| details.html | ![screenshot](static/images/login-validation-html.png) | Pass: No Errors |
+| login.html | ![screenshot](static/images/login-validation-html.png) | Pass: No Errors |
+| logout.html | ![screenshot](static/images/login-validation-html.png) | Pass: No Errors |
+| signup.html | ![screenshot](static/images/login-validation-html.png) | Pass: No Errors |
+| wishlist.html | ![screenshot](static/images/login-validation-html.png) | Pass: No Errors |
+| contact.html | ![screenshot](static/images/login-validation-html.png) | Pass: No Errors |
+| contact_thanks.html | ![screenshot](static/images/login-validation-html.png) | Pass: No Errors |
+| faq_confirm_delete.html | ![screenshot](static/images/login-validation-html.png) | Pass: No Errors |
+| faq_form.html | ![screenshot](static/images/login-validation-html.png) | Pass: No Errors |
+| faq_list.html | ![screenshot](static/images/login-validation-html.png) | Pass: No Errors |
+| faq_manage.html | ![screenshot](static/images/login-validation-html.png) | Pass: No Errors |
+| newsletter_thanks.html | ![screenshot](static/images/login-validation-html.png) | Pass: No Errors |
+| cart.html | ![screenshot](static/images/login-validation-html.png) | Pass: No Errors |
+| checkout.html | ![screenshot](static/images/login-validation-html.png) | Pass: No Errors |
+| error.html | ![screenshot](static/images/login-validation-html.png) | Pass: No Errors |
+| success.html | ![screenshot](static/images/login-validation-html.png) | Pass: No Errors |
+**NB:** No errors or warnings were found in the final validated output. A few informational notes regarding HTML5 “void elements” (e.g., trailing slashes on <meta> and <link> tags) were shown, but these do not affect validity.
 
 ### 6.2 CSS
 
