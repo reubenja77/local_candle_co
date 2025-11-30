@@ -690,3 +690,11 @@ section h2 {
   border-color: var(--lc-primary-dark);
   color: #fff !important;
 }
+
+/* Accessibility: high-contrast Cart button */
+.cart-btn {
+  background-color: #4a2f25;      
+  color: #ffffff !important;      
+  border-color: #4a2f25;
+}
+
