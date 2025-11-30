@@ -33,6 +33,7 @@
               type="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
+              aria-label="Open navigation menu"
             >
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -109,7 +110,11 @@
             class="d-flex"
           >
             {% csrf_token %}
+            <label for="newsletter-email" class="visually-hidden">
+              Email address
+            </label>
             <input
+              id="newsletter-email"
               type="email"
               name="email"
               class="form-control me-2"

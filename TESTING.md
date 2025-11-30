@@ -22,13 +22,15 @@ All manual tests were completed using:
 
 - Chrome (desktop + mobile)
 - Firefox
-- Safari (mobile)
+- Safari 
+- iPhone
 - Django development server
 
 ---
 
 ## 1.1 Navigation Bar
 ![navbar](static/images/navbar.png)
+![mobile](static/images/mobile-nav.png)
 
 | Test | Expected Result | Pass |
 |------|------------------|------|
@@ -230,14 +232,26 @@ All manual tests were completed using:
 
 ---
 
-## 5. Lighthouse Accessibility Tests
+## 5. Error Page Testing (404 & 500)
 
-| Page | Score | Notes |
-|-------|--------|---------|
-| Home | 95–100 | ✔️ Good contrast & landmarks |
-| Product detail | 90+ | ✔️ Simple structure |
-| Cart | 100 | ✔️ |
-| FAQ | 100 | ✔️ |
+Custom error pages (`404.html` and `500.html`) were implemented to ensure a clear, branded user experience in cases of broken links or server errors.
+
+### 404 Page Test
+A non-existent URL was visited on the deployed site to trigger the custom 404 page.
+
+| Test | Screenshot | Result |
+|------|------------|--------|
+| Visit a URL that does not exist (`/this-page-does-not-exist/`) | ![404 screenshot](static/images/404-test.png) | ✔️ PASS |
+
+### 500 Page Test
+A temporary test route (`/error-test/`) was added to deliberately raise an exception on Heroku.  
+This allowed the custom `500.html` page to be verified.
+
+| Test | Screenshot | Result |
+|------|------------|--------|
+| Trigger a simulated server error | ![500 screenshot](static/images/500-test.png) | ✔️ PASS |
+
+Both pages displayed correctly on Heroku with `DEBUG=False`, confirming that production error handling is working as expected.
 
 ---
 
@@ -260,7 +274,8 @@ The HTML for all main pages was validated using the [HTML W3C Validator](https:/
 | newsletter_thanks.html | ![screenshot](static/images/login-validation-html.png) | Pass: No Errors |
 | cart.html | ![screenshot](static/images/cart-validation-html.png) | Pass: No Errors |
 | checkout.html | ![screenshot](static/images/login-validation-html.png) | Pass: No Errors |
-| error.html | ![screenshot](static/images/login-validation-html.png) | Pass: No Errors |
+| 404 error.html | ![screenshot](static/images/404-validation-html.png) | Pass: No Errors |
+| 500 error.html | ![screenshot](static/images/500-validation-html.png) | Pass: No Errors |
 **NB:** No errors or warnings were found in the final validated output. A few informational notes regarding HTML5 “void elements” (e.g., trailing slashes on <meta> and <link> tags) were shown, but these do not affect validity.
 
 ### 6.2 CSS
@@ -310,16 +325,7 @@ I've also tested my deployed project on WAVE Web Accessibility Evaluation Tool t
 | Chrome | ![screenshot](static/images/wave-home-summary-page.webp) | ![screenshot](static/images/wave-home-details-page.webp) | ![screenshot](static/images/wave-home-structure-page.webp) | ![screenshot](static/images/wave-home-contrast-page.webp) | ![screenshot](static/images/wave-home-landing-page.webp) | Pass: No Errors |
 |
 
-
-## Browser Compatibility
-
-I've tested my deployed project on multiple browsers to check for compatibility issues.
-
-| Browser | Home | Notes |  |
-| --- | --- | --- | --- | 
-| Chrome | ![screenshot](static/images/chrome-home-page.webp) | ✔️ PASS |
-| Firefox | ![screenshot](static/images/firefox-home-page.webp) | ✔️ PASS |
-| Safari | ![screenshot](static/images/safari-home-page.webp) | ✔️ PASS |
+---
 
 ## Lighthouse Audit
 
@@ -416,7 +422,7 @@ returns no PEP8 violations for all application code (excluding Django migration 
 
 | Device/Browser | Home | Result |
 |----------------|--------|--------|
-| Chrome Desktop | ![screenshot](static/images/chrome-testing.png)  | ✔️ PASS |
+| Chrome | ![screenshot](static/images/chrome-testing.png)  | ✔️ PASS |
 | Firefox | ![screenshot](static/images/firefox-testing.png) | ✔️ PASS |
 | Safari | ![screenshot](static/images/safari-testing.png) | ✔️ PASS |
 | iPhone | ![screenshot](static/images/mobile-home.png) | ✔️ PASS |
@@ -431,22 +437,7 @@ returns no PEP8 violations for all application code (excluding Django migration 
 - Quantity update not working → added `cart_update` view
 - FAQ CRUD missing → implemented full admin CRUD
 
-### Remaining (Optional)
-- AJAX “add to cart” (non-essential)
-- Real email backend (optional upgrade)
-
 ---
 
-## 9. Final Result
-
-All core functionality has passed testing and meets:  
-- LO1 (e-commerce + Stripe)  
-- LO2 (UX + testing)  
-- LO3 (SEO)  
-- LO4 (auth)  
-- LO5 (marketing)  
-- LO6 (e-commerce fundamentals)
-
-✔️ **All Must-Have features working**  
-✔️ Should-Have features mostly completed  
-✔️ Project ready for final deployment & polishing  
+> [!NOTE]  
+> Return back to the [README.md](README.md) file.
