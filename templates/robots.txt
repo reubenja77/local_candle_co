@@ -3,4 +3,4 @@ Disallow: /admin/
 
 Allow: /
 
-Sitemap: https://local-candle-co-8ac3df963878.herokuapp.com/sitemap.xml
+Sitemap: {{ request.scheme }}://{{ request.get_host }}{% url 'sitemap' %}
