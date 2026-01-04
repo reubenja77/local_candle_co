@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from products.models import Product
 from .models import WishlistItem
+from checkout.models import Order
 
 
 @login_required
@@ -25,3 +26,8 @@ def wishlist_remove(request, product_id):
     WishlistItem.objects.filter(user=request.user, product=product).delete()
     messages.info(request, 'Removed from wishlist.')
     return redirect('accounts:wishlist')
+
+@login_required
+def order_history(request):
+    orders = Order.objects.filter(user=request.user).order_by("-created_at")
+    return render(request, "accounts/order_history.html", {"orders": orders})

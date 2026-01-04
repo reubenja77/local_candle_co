@@ -9,6 +9,7 @@ import stripe
 
 from products.models import Product
 from .forms import CheckoutForm
+from .models import Order
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -168,6 +169,8 @@ def checkout_view(request):
             order.status = "paid"
             order.save()
 
+            request.session["last_order_id"] = order.id
+
             # Send a simple confirmation email (console backend in dev)
             subject = "Your Local Candle Co order"
             message = (
@@ -188,11 +191,13 @@ def checkout_view(request):
                     message,
                     settings.DEFAULT_FROM_EMAIL,
                     recipient_list,
-                    fail_silently=True,
+                    fail_silently=False,
                 )
             except Exception:
-                # In production you would log this instead of pass
-                pass
+                messages.warning(
+                    request,
+                    "Your order was placed successfully, but we could not send a confirmation email."
+                )
 
             # Clear cart
             request.session[CART_SESSION_KEY] = {}
@@ -223,7 +228,9 @@ def checkout_view(request):
 
 
 def success(request):
-    return render(request, "checkout/success.html")
+    order_id = request.session.get("last_order_id")
+    order = Order.objects.filter(id=order_id).first() if order_id else None
+    return render(request, "checkout/success.html", {"order": order})
 
 
 def error(request):
