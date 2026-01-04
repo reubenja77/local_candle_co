@@ -188,9 +188,11 @@ REMEMBER: Elaborate on below section
 ---
 
 ## SEO Implementation
-- Meta description tags on key pages
+The application includes a dynamically generated sitemap and robots.txt file.
+These reference the deployed production URL and ensure proper indexing by search engines.
 - `robots.txt`
 - `sitemap.xml`
+- Meta description tags on key pages
 - Friendly URLs
 - Human-readable page titles
 - Internal linking via navbar and footer
