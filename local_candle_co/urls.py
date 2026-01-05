@@ -16,13 +16,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import TemplateView
 from django.contrib.sitemaps.views import sitemap
+
 from products.sitemaps import ProductSitemap
-from local_candle_co.views import robots_txt
+from marketing.sitemaps import MarketingStaticSitemap
+from accounts.sitemaps import AccountsStaticSitemap
+from local_candle_co.sitemaps import CoreStaticSitemap
 
 
 sitemaps = {
-    'products': ProductSitemap,
+    "core": CoreStaticSitemap,
+    "products": ProductSitemap,
+    "marketing": MarketingStaticSitemap,
+    "accounts": AccountsStaticSitemap,
 }
 
 
