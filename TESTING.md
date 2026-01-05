@@ -10,7 +10,8 @@ This document covers all testing completed for **Local Candle Co**, including:
 - Form validation  
 - Authentication & authorization  
 - Cart, quantity and checkout testing  
-- Email confirmation  
+- Email confirmation
+- Order history (My Orders)
 - CRUD testing (FAQ)  
 - Lighthouse accessibility  
 - HTML, CSS, Python/Pep8 validation  
@@ -158,9 +159,60 @@ All manual tests were completed using:
 
 ---
 
-## 2. FAQ CRUD Management (Admin Only)
+## 2. Order History (My Orders) – Testing
 
-#### FAQ Management (CRUD)
+### Feature Description
+Authenticated users can view a list of their completed purchases via the **My Orders** page.  
+This feature allows users to reference previous orders, including order number, date, total amount, and payment status.
+
+---
+
+### Manual Feature Testing
+
+| Test Case | Action | Expected Result | Outcome |
+|----------|-------|-----------------|---------|
+| View order history as logged-in user | Navigate to **My Orders** from navbar | List of user’s completed orders is displayed | Pass |
+| Order details displayed correctly | View order card | Order number, date, total, and status are visible | Pass |
+| Multiple orders displayed | Place more than one order | Orders appear in reverse chronological order | Pass |
+| No orders present | Access My Orders with no purchases | Informative message shown | Pass |
+
+---
+
+### Authentication & Access Control Testing
+
+| Test Case | Action | Expected Result | Outcome |
+|----------|-------|-----------------|---------|
+| Unauthenticated access | Visit `/checkout/orders/` while logged out | Redirected to login page | Pass |
+| Cross-user access | Log in as a different user | Only own orders are displayed | Pass |
+
+---
+
+### Data Integrity Testing
+
+| Test Case | Action | Expected Result | Outcome |
+|----------|-------|-----------------|---------|
+| Order ownership | Compare order user field | Orders belong only to logged-in user | Pass |
+| Order status accuracy | Complete successful payment | Status shows as **Paid** | Pass |
+| Date accuracy | Place order | Correct date and time recorded | Pass |
+
+---
+
+### Post-Purchase User Experience
+
+- Users receive a confirmation email after checkout.
+- Users can later reference the same order via the **My Orders** page.
+- This provides continuity and improves trust in the purchasing process.
+
+---
+
+### Result
+The **Order History** feature successfully provides users with access to previous purchases, resolving the lack of post-purchase reference identified during assessment.
+
+---
+
+## 3. FAQ CRUD Management (Admin Only)
+
+### FAQ Management (CRUD)
 
 | Test Area | Description |
 |-----------|-------------|
@@ -196,7 +248,7 @@ All manual tests were completed using:
 
 ---
 
-## 3. User Story Testing
+## 4. User Story Testing
 
 | User Story | Result |
 |------------|--------|
@@ -211,7 +263,7 @@ All manual tests were completed using:
 
 ---
 
-## 4. Form Validation
+## 5. Form Validation
 
 | Form | Behaviour | Result |
 |-------|-------------|---------|
@@ -222,7 +274,7 @@ All manual tests were completed using:
 
 ---
 
-## 5. Authentication & Authorization
+## 6. Authentication & Authorization
 
 | Test | Result |
 |------|--------|
@@ -233,7 +285,7 @@ All manual tests were completed using:
 
 ---
 
-## 6. Error Page Testing (404 & 500)
+## 7. Error Page Testing (404 & 500)
 
 Custom error pages (`404.html` and `500.html`) were implemented to ensure a clear, branded user experience in cases of broken links or server errors.
 
@@ -256,9 +308,9 @@ Both pages displayed correctly on Heroku with `DEBUG=False`, confirming that pro
 
 ---
 
-## 7. Validator Testing
+## 8. Validator Testing
 
-### 7.1 HTML
+### 8.1 HTML
 
 The HTML for all main pages was validated using the [HTML W3C Validator](https://validator.w3.org) to validate all of my HTML files.
 
@@ -279,7 +331,7 @@ The HTML for all main pages was validated using the [HTML W3C Validator](https:/
 | 500 error.html | ![screenshot](static/images/500-validation-html.png) | Pass: No Errors |
 **NB:** No errors or warnings were found in the final validated output. A few informational notes regarding HTML5 “void elements” (e.g., trailing slashes on <meta> and <link> tags) were shown, but these do not affect validity.
 
-### 7.2 CSS
+### 8.2 CSS
 
 I have used the recommended [CSS Jigsaw Validator](https://jigsaw.w3.org/css-validator) to validate all of my CSS files.
 
@@ -287,7 +339,7 @@ I have used the recommended [CSS Jigsaw Validator](https://jigsaw.w3.org/css-val
 | --- | --- | --- | ----------------------------------------------------------------------------------------------------------|
 | style.css  | ![screenshot](static/images/css-validation.png) |  Pass: No Errors |
 
-### 7.3 Python (PEP8)
+### 8.3 Python (PEP8)
 
 Python code in this project was validated using **flake8** to ensure compliance with PEP8.
 
@@ -309,7 +361,7 @@ flake8
 ```
 flake8 checked the entire codebase (excluding migrations) for PEP8 compliance, including unused imports, line length, formatting, indentation, and file endings.
 
-## 8. JavaScript Validation
+## 9. JavaScript Validation
 
 This project does not include any custom JavaScript files.
 All dynamic behaviour comes from Bootstrap’s JS, which is loaded via CDN and therefore not part of the repository.
@@ -317,7 +369,7 @@ No JS validation was required.
 
 ---
 
-## 9. WAVE Web Accessibility Evaluation Tool
+## 10. WAVE Web Accessibility Evaluation Tool
 
 I've also tested my deployed project on WAVE Web Accessibility Evaluation Tool to check for any issues.
 
@@ -328,7 +380,7 @@ I've also tested my deployed project on WAVE Web Accessibility Evaluation Tool t
 
 ---
 
-## 10. Lighthouse Audit
+## 11. Lighthouse Audit
 
 I've tested my deployed project using the Lighthouse Audit tool to check for any major issues.
 
@@ -341,7 +393,7 @@ I've tested my deployed project using the Lighthouse Audit tool to check for any
 
 ---
 
-## 11. Responsiveness
+## 12. Responsiveness
 
 I've tested my deployed project for responsiveness issues.
 
@@ -378,7 +430,7 @@ These occurred in multiple files where imports existed but were not used:
 
 **Fix:** Removed all unused imports to clean up the codebase and follow PEP8 recommendations.
 
-#### 501 – Line too long
+#### E501 – Line too long
 
 These typically appeared in:
 
@@ -418,7 +470,7 @@ returns no PEP8 violations for all application code (excluding Django migration 
 
 ---
 
-## 12. Browser & Device Testing
+## 13. Browser & Device Testing
 
 | Device/Browser | Home | Result |
 |----------------|--------|--------|
@@ -429,7 +481,7 @@ returns no PEP8 violations for all application code (excluding Django migration 
 
 ---
 
-## 13. Known Bugs & Fixes
+## 14. Known Bugs & Fixes
 
 ### Fixed
 - Navbar not collapsing on mobile → replaced with dropdown burger

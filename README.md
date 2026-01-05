@@ -94,6 +94,7 @@ Users create accounts to:
 - Allow admin to manage catalogue, orders, FAQs, and contact messages
 - Include marketing features (newsletter, SEO, mock Facebook page)
 - Provide accessible UX with clean navigation and messaging
+- Post-purchase user experience is enhanced through a dedicated “My Orders” page, allowing users to view their completed purchases at any time.
 
 ### Target Audience
 - Adults aged 20–50
@@ -153,6 +154,7 @@ REMEMBER: Elaborate on below section
 - Newsletter signup
 - FAQ page
 - Admin management for products, reviews, FAQs, contacts, orders
+- User profile page displaying previous orders
 - SEO (meta tags, robots.txt, sitemap.xml)
 - Custom error pages (404, 500)
 - Mock Facebook Business Page
