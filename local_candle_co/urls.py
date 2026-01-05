@@ -23,6 +23,7 @@ from products.sitemaps import ProductSitemap
 from marketing.sitemaps import MarketingStaticSitemap
 from accounts.sitemaps import AccountsStaticSitemap
 from local_candle_co.sitemaps import CoreStaticSitemap
+from local_candle_co.views import robots_txt
 
 
 sitemaps = {
