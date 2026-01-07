@@ -33,15 +33,21 @@ All manual tests were completed using:
 ---
 
 ### 1.1 Navigation Bar
+
+#### Logged-out:
 ![navbar](static/images/navbar.png)
 ![mobile](static/images/mobile-nav.png)
+
+#### Logged-in:
+![navbar login](static/images/navbar-log-in.png)
+![mobile login](static/images/mobile-nav-log-in.png)
 
 | Test | Expected Result | Pass |
 |------|------------------|------|
 | Navbar loads on all pages | Visible & styled | ✔️ |
 | Mobile shows burger dropdown | Dropdown opens from right | ✔️ |
 | Logged-out links show: Login, Register | Correct visibility | ✔️ |
-| Logged-in links show: Wishlist, Logout | Correct visibility | ✔️ |
+| Logged-in links show: Wishlist, My Orders, Logout | Correct visibility | ✔️ |
 | Cart button always visible | Works & redirects | ✔️ |
 
 ---
@@ -157,6 +163,11 @@ All manual tests were completed using:
 | No exceptions occur | ✔️ PASS |
 | Email content matches expected | ✔️ PASS |
 
+**Note:**  
+During local development, confirmation emails are printed to the terminal using Django’s console email backend. In production (Heroku), the email backend is configured to use SMTP, and confirmation emails are successfully sent and received in a real inbox.
+
+![email](static/images/email-confirmation.png)
+
 ---
 
 ## 2. Order History (My Orders) – Testing
@@ -164,6 +175,8 @@ All manual tests were completed using:
 ### Feature Description
 Authenticated users can view a list of their completed purchases via the **My Orders** page.  
 This feature allows users to reference previous orders, including order number, date, total amount, and payment status.
+
+![Order history page](static/images/orders-history.webp)
 
 ---
 
@@ -322,6 +335,7 @@ The HTML for all main pages was validated using the [HTML W3C Validator](https:/
 | logout.html | ![screenshot](static/images/logout-validation-html.png) | Pass: No Errors |
 | signup.html | ![screenshot](static/images/signup-validator-html.png) | Pass: No Errors |
 | wishlist.html | ![screenshot](static/images/wishlist-validation-html.png) | Pass: No Errors |
+| my_order.html | ![screenshot](static/images/order-history-validation-html.png) | Pass: No Errors |
 | contact.html | ![screenshot](static/images/contact-validation-html.png) | Pass: No Errors |
 | faq_form.html | ![screenshot](static/images/faq-validation-html.png) | Pass: No Errors |
 | newsletter_thanks.html | ![screenshot](static/images/login-validation-html.png) | Pass: No Errors |
