@@ -154,6 +154,8 @@ Typography combines clean sans-serif fonts for readability with subtle serif acc
 - Newsletter signup
 - FAQ page
 - Admin management for products, reviews, FAQs, contacts, orders
+- User registration, login & logout
+- Password reset via email (Django Allauth)
 - Order history (My Orders) page allowing authenticated users to view previous purchases
 - SEO (meta tags, robots.txt, sitemap.xml)
 - Custom error pages (404, 500)

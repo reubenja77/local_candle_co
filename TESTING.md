@@ -8,7 +8,11 @@ This document covers all testing completed for **Local Candle Co**, including:
 - Manual feature testing  
 - User story testing  
 - Form validation  
-- Authentication & authorization  
+- Authentication & authorization
+- Password reset flow:
+  - User can request password reset via email
+  - Reset link successfully allows setting a new password
+  - User can log in with updated credentials
 - Cart, quantity and checkout testing  
 - Email confirmation
 - Order history (My Orders)
